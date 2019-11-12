@@ -1,0 +1,25 @@
+.auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    &__top {
+        text-align: center;
+        margin-bottom: 5px;
+        h2 {
+            font-size: 28px;
+            line-height: 33px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 21px;
+            letter-spacing: 0.1px;
+            opacity: 0.5;
+        }
+    }
+
+    .panel {
+        max-width: 450px;
+    }
+}
