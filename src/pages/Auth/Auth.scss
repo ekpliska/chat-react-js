@@ -26,15 +26,37 @@
         letter-spacing: 0.1px;
     }
 
+    &__success-block {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        height: 400px;
+
+        h2 {
+            margin-top: 20px;
+        }
+        svg {
+            width: 40px;
+            height: 40px;
+        }
+        p {
+            font-size: 16px;
+            letter-spacing: 0.1px;
+            opacity: 0.5;
+        }
+    }
+
     button {
         text-transform: uppercase;
         font-weight: 500;
-        font-size: 14px;
-        letter-spacing: 0.1px;
+        font-size: 12px;
+        letter-spacing: 0.1em;
         width: 100%;
     }
 
     .panel {
-        max-width: 540px;
+        width: 400px;
     }
 }

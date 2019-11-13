@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 class LoginForm extends Component {
     render() {
+        const success = false;
         return (
             <div>
                 <div className="auth__top">
@@ -27,6 +28,7 @@ class LoginForm extends Component {
                         </Form.Item>
                         <Link className="auth__register-link" to="/signup">Зарегистрироваться</Link>
                     </Form>
+
                 </Panel>
 
             </div>
