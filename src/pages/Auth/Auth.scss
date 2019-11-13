@@ -19,7 +19,22 @@
         }
     }
 
+    &__register-link {
+        text-align: center;
+        color: #adadad;
+        display: block;
+        letter-spacing: 0.1px;
+    }
+
+    button {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 14px;
+        letter-spacing: 0.1px;
+        width: 100%;
+    }
+
     .panel {
-        max-width: 450px;
+        max-width: 540px;
     }
 }
