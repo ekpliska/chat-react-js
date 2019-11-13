@@ -13,14 +13,14 @@ class LoginForm extends Component {
                 </div>
                 <Panel>
                     <Form onSubmit={() => { }} className="login-form">
-                        <Form.Item validateStatus="success" hasFeedback>
+                        <Form.Item>
                             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                placeholder="Username" size="large" />
+                                placeholder="Ваше имя" size="large" />
 
                         </Form.Item>
                         <Form.Item>
                             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                type="password" placeholder="Password" size="large" />
+                                type="password" placeholder="Пароль" size="large" />
                         </Form.Item>
                         <Form.Item>
                             <Button className="button__large" type="primary" size="large">Войти</Button>
