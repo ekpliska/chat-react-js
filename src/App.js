@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Auth } from './pages';
+import { Route } from 'react-router-dom';
+import { Auth, Chat } from './pages';
 
 class App extends Component {
 	render() {
 		return (
 			<div className="main">
-				<Auth />
+				<Route exact path={["/", "/login"]} component={Auth} />
+				<Route exact path={"/chat"} component={Chat} />
 			</div>
 		)
 	}
