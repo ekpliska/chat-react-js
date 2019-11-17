@@ -35,7 +35,7 @@ const SignupForm = (props) => {
                                     placeholder="Электронная почта" size="large" />
 
                             </Form.Item>
-                            <Form.Item validateStatus="success" hasFeedback>
+                            <Form.Item>
                                 <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                     placeholder="Ваше имя" size="large" />
 
