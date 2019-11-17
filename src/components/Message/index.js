@@ -7,12 +7,12 @@ import './Message.scss';
 import readedSvg from '../../asset/readed.svg';
 import noRreadedSvg from '../../asset/noreaded.svg';
 
-const Message = ({ photo, user, text, date, incoming, isReaded }) => {
+const Message = ({ photo, user, text, date, incoming, isReaded, attachments }) => {
     return (
-        <div className={classNames('message', { 'message--incoming' : !incoming })}>
+        <div className={classNames('message', { 'message--incoming': !incoming })}>
             <div className="message__content">
                 {
-                    !incoming && isReaded 
+                    !incoming && isReaded
                         ? <img className="message__icon-readed" src={readedSvg} alt="Readed icon" />
                         : <img className="message__icon-readed message__icon-readed--no" src={noRreadedSvg} alt="NoReaded icon" />
                 }
@@ -25,9 +25,19 @@ const Message = ({ photo, user, text, date, incoming, isReaded }) => {
                             {text}
                         </p>
                     </div>
+                    <div className="message__attachments">
+                        {
+                            attachments && attachments.map(file => (
+                                <div className="message__attachments-item">
+                                    <img src={file.url} atl={file.filename} />
+                                </div>
+                            ))
+                        }
+                    </div>
                     <span className="message__date">
-                        {formatDistanceToNow(date, {includeSeconds: true, addSuffix: true, locale: ru})}
+                        {formatDistanceToNow(date, { includeSeconds: true, addSuffix: true, locale: ru })}
                     </span>
+
                 </div>
             </div>
         </div>
@@ -45,6 +55,7 @@ Message.propTypes = {
     date: PropTypes.string,
     user: PropTypes.object,
     incoming: PropTypes.bool,
+    attachments: PropTypes.array,
 }
 
 export default Message;

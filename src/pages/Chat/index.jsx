@@ -8,7 +8,17 @@ const Chat = () => {
                 photo="https://static-cdn.jtvnw.net/jtv_user_pictures/61763701-db95-45b3-8622-25c1ca38e1c1-profile_image-70x70.png" 
                 text="__text" 
                 date={new Date(2019, 9, 30)} 
-                incoming={true} />
+                incoming={true} 
+                attachments={[
+                    {
+                        url: "https://source.unsplash.com/100x100/?random=1,nature,water",
+                        filename: "File name",
+                    },
+                    {
+                        url: "https://source.unsplash.com/100x100/?random=1,nature,water",
+                        filename: "File name",
+                    }
+                ]} />
             <Message 
                 photo="https://static-cdn.jtvnw.net/jtv_user_pictures/61763701-db95-45b3-8622-25c1ca38e1c1-profile_image-70x70.png" 
                 text="__text 2" 

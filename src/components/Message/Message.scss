@@ -40,6 +40,20 @@
     line-height: 28px;
   }
 
+  &__attachments {
+    display: flex;
+    padding: 4px 0;
+    &-item {
+      margin-right: 5px;
+      cursor: pointer;
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+      }
+    }
+  }
+
   &__date {
     font-size: 12px;
     opacity: 0.4;
