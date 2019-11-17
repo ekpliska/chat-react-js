@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 class LoginForm extends Component {
     render() {
-        const success = false;
         return (
             <div>
                 <div className="auth__top">
