@@ -7,24 +7,39 @@ import './Message.scss';
 import readedSvg from '../../asset/readed.svg';
 import noRreadedSvg from '../../asset/noreaded.svg';
 
-const Message = ({ photo, user, text, date, incoming, isReaded, attachments }) => {
+const Message = ({ photo, user, text, date, incoming, isReaded, attachments, isTyping }) => {
     return (
-        <div className={classNames('message', { 'message--incoming': !incoming })}>
+        <div className={classNames('message', {
+            'message--incoming': !incoming,
+            'message--is-typing': isTyping,
+            'message--image': attachments && attachments.lenght === 1,
+        })}>
             <div className="message__content">
                 {
-                    !incoming && isReaded
+                    !incoming && 
+                    (isReaded
                         ? <img className="message__icon-readed" src={readedSvg} alt="Readed icon" />
                         : <img className="message__icon-readed message__icon-readed--no" src={noRreadedSvg} alt="NoReaded icon" />
-                }
+                    )}
                 <div className="message__photo">
                     <img src={photo} alt={`Photo ${user.fullName}`} />
                 </div>
                 <div className="message__info">
-                    <div className="message__bubble">
-                        <p className="message__text">
-                            {text}
-                        </p>
-                    </div>
+                    {
+                        (text || isTyping) && (
+                            <div className="message__bubble">
+                                {text && <p className="message__text">{text}</p>}
+                                {isTyping && (
+                                    <div className="message__typing">
+                                        <span />
+                                        <span />
+                                        <span />
+                                    </div>
+                                )}
+                            </div>
+                        )
+                    }
+
                     <div className="message__attachments">
                         {
                             attachments && attachments.map(file => (
@@ -34,10 +49,12 @@ const Message = ({ photo, user, text, date, incoming, isReaded, attachments }) =
                             ))
                         }
                     </div>
-                    <span className="message__date">
-                        {formatDistanceToNow(date, { includeSeconds: true, addSuffix: true, locale: ru })}
-                    </span>
-
+                    {
+                        date &&
+                        <span className="message__date">
+                            {formatDistanceToNow(date, { includeSeconds: true, addSuffix: true, locale: ru })}
+                        </span>
+                    }
                 </div>
             </div>
         </div>
@@ -56,6 +73,7 @@ Message.propTypes = {
     user: PropTypes.object,
     incoming: PropTypes.bool,
     attachments: PropTypes.array,
+    isTyping: PropTypes.bool,
 }
 
 export default Message;
