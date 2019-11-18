@@ -12,7 +12,7 @@ const Message = ({ photo, user, text, date, incoming, isReaded, attachments, isT
         <div className={classNames('message', {
             'message--incoming': !incoming,
             'message--is-typing': isTyping,
-            'message--image': attachments && attachments.lenght === 1,
+            'message--image': attachments && attachments.length === 1,
         })}>
             <div className="message__content">
                 {
@@ -42,8 +42,8 @@ const Message = ({ photo, user, text, date, incoming, isReaded, attachments, isT
 
                     <div className="message__attachments">
                         {
-                            attachments && attachments.map(file => (
-                                <div className="message__attachments-item">
+                            attachments && attachments.map((file, index) => (
+                                <div className="message__attachments-item" key={index}>
                                     <img src={file.url} atl={file.filename} />
                                 </div>
                             ))
@@ -69,7 +69,7 @@ Message.propTypes = {
     className: PropTypes.string,
     photo: PropTypes.string,
     text: PropTypes.string,
-    date: PropTypes.string,
+    // date: PropTypes.string,
     user: PropTypes.object,
     incoming: PropTypes.bool,
     attachments: PropTypes.array,
