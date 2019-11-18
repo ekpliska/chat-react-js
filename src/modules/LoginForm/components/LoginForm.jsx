@@ -1,19 +1,10 @@
 import React from 'react';
 import { Form, Icon, Input } from 'antd';
+import { validateField } from '../../../utils/helpers';
 import { Button, Panel } from '../../../components';
 import { Link } from 'react-router-dom';
 
-const validate = (key, touched, errors) => {
-    if (touched[key]) {
-        if (errors[key]) {
-            return 'error';
-        } else {
-            return 'success';
-        }
-    } else {
-        return '';
-    }
-}
+
 
 const LoginForm = (props) => {
     const {
@@ -32,7 +23,7 @@ const LoginForm = (props) => {
             </div>
             <Panel>
                 <Form className="login-form">
-                    <Form.Item validateStatus={validate('username', touched, errors)} hasFeedback
+                    <Form.Item validateStatus={validateField('username', touched, errors)} hasFeedback
                         help={!touched.username ? "" : errors.username}>
                         <Input id="username" name="username" value={values.username}
                             onChange={handleChange}
@@ -41,7 +32,7 @@ const LoginForm = (props) => {
                             placeholder="Ваше имя" size="large" />
 
                     </Form.Item>
-                    <Form.Item validateStatus={validate('password', touched, errors)} hasFeedback
+                    <Form.Item validateStatus={validateField('password', touched, errors)} hasFeedback
                         help={!touched.password ? "" : errors.password}>
                         <Input id="password" name="password" value={values.password}
                             onChange={handleChange}

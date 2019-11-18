@@ -1,4 +1,5 @@
 import React from 'react';
+import { validateField } from '../../../utils/helpers';
 import { Form, Icon, Input } from 'antd';
 import { Button, Panel } from '../../../components';
 import { Link } from 'react-router-dom';
@@ -25,7 +26,7 @@ const SignupForm = (props) => {
                     success
                         ?
                         <Form className="login-form">
-                            <Form.Item validateStatus={!touched.email ? "" : errors.email ? 'error' : 'success'} hasFeedback
+                            <Form.Item validateStatus={validateField('email', touched, errors)} hasFeedback
                                 help={!touched.email ? "" : errors.email}>
                                 <Input 
                                     id ="email" name="email" value={values.email} 
@@ -40,7 +41,7 @@ const SignupForm = (props) => {
                                     placeholder="Ваше имя" size="large" />
 
                             </Form.Item>
-                            <Form.Item validateStatus={!touched.password ? "" : errors.password ? 'error' : 'success'} hasFeedback
+                            <Form.Item validateStatus={validateField('password', touched, errors)} hasFeedback
                                 help={!touched.password ? "" : errors.password}>
                                 <Input
                                     id="password" name="password" value={values.password} 
