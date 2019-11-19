@@ -61,20 +61,20 @@
           opacity: 0.4;
         }
         &-count {
-          background: #f45b6b;
-          color: #ffffff;
-          font-weight: bold;
-          width: 100%;
-          max-width: 25px;
-          height: 18px;
-          font-size: 11px;
-          text-align: center;
-          line-height: 17px;
-          border-radius: 30px;
-          position: absolute;
-          right: 7px;
-          bottom: 0;
-          box-shadow: 0 0 0px 3px #ffffff;
+            background: #f45b6b;
+            color: #ffffff;
+            /* font-weight: bold; */
+            width: 100%;
+            max-width: 25px;
+            height: 18px;
+            font-size: 10px;
+            text-align: center;
+            line-height: 17px;
+            border-radius: 30px;
+            position: absolute;
+            right: 7px;
+            bottom: 0;
+            box-shadow: 0 0 0px 3px #ffffff;
         }
         .message__icon-readed {
             bottom: 2px;
