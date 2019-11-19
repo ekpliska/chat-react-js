@@ -12,25 +12,39 @@ const getUserPtoho = (photoPath, username) => {
 }
 
 const DialogItem = ({ user = {
-    fullname: 'Ivan IV', 
-    photo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/61763701-db95-45b3-8622-25c1ca38e1c1-profile_image-70x70.png'}, 
+    fullname: 'Ivan IVANOV', 
+    photo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/61763701-db95-45b3-8622-25c1ca38e1c1-profile_image-70x70.png',
+    isOnline: true}, 
     message = {
-        text: '___text',
+        text: '___text in in a distant faraway galaxy, suddenly',
         date: new Date(),
-    } }) => {
+    },
+    unreaded = 10}) => {
     return (
-        <div className="dialog__items">
-            <div className="dialog__items-photo">
+        <div className={classNames('dialogs__item', {
+            'dialogs__item--online': user.isOnline
+        })}>
+            <div className="dialogs__item-photo">
                 {getUserPtoho(user.photo, user.fullname)}
             </div>
-            <div className="dialog__items-info">
-                <div className="dialog__items-info-top">
+            <div className="dialogs__item-info">
+                <div className="dialogs__item-info-top">
                     <b>{user.fullname}</b>
-                    <span><DateTime date={message.date} /></span>
+                    <span>
+                        17:00
+                        {/* <DateTime date={message.date} /> */}
+                    </span>
                 </div>
-                <div className="dialog__items-info-bottom">
+                <div className="dialogs__item-info-bottom">
                     <p>{message.text}</p>
-                    <CheckMessIcon incoming={false} isReaded={false} />
+                    <CheckMessIcon incoming={false} isReaded={!false} />
+                    {
+                        unreaded > 0 && (
+                            <div className="dialogs__item-info-bottom-count">
+                                {unreaded}
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </div>

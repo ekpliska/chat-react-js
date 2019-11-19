@@ -1,0 +1,87 @@
+.dialogs {
+  width: 300px;
+  &__item {
+      display: flex;
+      margin-bottom: 15px;
+      $item: &;
+    &-photo {
+      position: relative;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    &--online {
+      #{$item}-photo {
+        &::before {
+          display: block;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          content: "";
+          background-color: #00c980;
+          border-radius: 30px;
+          width: 13px;
+          height: 13px;
+          border: 3px solid #ffffff;
+        }
+      }
+    }
+    &-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+      &-top {
+        display: flex;
+        b {
+          font-weight: 500;
+          font-size: 14px;
+          margin-bottom: 6px;
+          flex: 1;
+        }
+        span {
+          opacity: 0.4;
+        }
+      }
+      &-bottom {
+        position: relative;
+        p {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 210px;
+          height: 1.2em;
+          white-space: nowrap;
+          opacity: 0.4;
+        }
+        &-count {
+          background: #f45b6b;
+          color: #ffffff;
+          font-weight: bold;
+          width: 100%;
+          max-width: 25px;
+          height: 18px;
+          font-size: 11px;
+          text-align: center;
+          line-height: 17px;
+          border-radius: 30px;
+          position: absolute;
+          right: 7px;
+          bottom: 0;
+          box-shadow: 0 0 0px 3px #ffffff;
+        }
+        .message__icon-readed {
+            bottom: 2px;
+            left: auto;
+            right: 7px;
+          }
+      }
+    }
+  }
+}

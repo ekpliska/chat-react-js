@@ -4,7 +4,14 @@ import { Message, DialogItem } from '../../components';
 const Chat = () => {
     return (
         <section className="chat">
-            <DialogItem />
+            <div className="dialogs">
+                <DialogItem />
+                <DialogItem />
+                <DialogItem />
+                <DialogItem />
+                <DialogItem />
+                <DialogItem />
+            </div>
             <Message
                 photo="https://static-cdn.jtvnw.net/jtv_user_pictures/61763701-db95-45b3-8622-25c1ca38e1c1-profile_image-70x70.png"
                 text="__text"
