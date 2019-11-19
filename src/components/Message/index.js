@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
-import ru from 'date-fns/locale/ru';
+
 import './Message.scss';
-import readedSvg from '../../asset/readed.svg';
-import noRreadedSvg from '../../asset/noreaded.svg';
+
+import { DateTime, CheckMessIcon } from '../';
 
 const Message = ({ photo, user, text, date, incoming, isReaded, attachments, isTyping }) => {
     return (
@@ -15,12 +14,7 @@ const Message = ({ photo, user, text, date, incoming, isReaded, attachments, isT
             'message--image': attachments && attachments.length === 1,
         })}>
             <div className="message__content">
-                {
-                    !incoming && 
-                    (isReaded
-                        ? <img className="message__icon-readed" src={readedSvg} alt="Readed icon" />
-                        : <img className="message__icon-readed message__icon-readed--no" src={noRreadedSvg} alt="NoReaded icon" />
-                    )}
+                <CheckMessIcon incoming={incoming} isReaded={isReaded} />
                 <div className="message__photo">
                     <img src={photo} alt={`Photo ${user.fullName}`} />
                 </div>
@@ -52,7 +46,7 @@ const Message = ({ photo, user, text, date, incoming, isReaded, attachments, isT
                     {
                         date &&
                         <span className="message__date">
-                            {formatDistanceToNow(date, { includeSeconds: true, addSuffix: true, locale: ru })}
+                            <DateTime date={date} />
                         </span>
                     }
                 </div>
@@ -72,6 +66,7 @@ Message.propTypes = {
     // date: PropTypes.string,
     user: PropTypes.object,
     incoming: PropTypes.bool,
+    isReaded: PropTypes.bool,
     attachments: PropTypes.array,
     isTyping: PropTypes.bool,
 }
