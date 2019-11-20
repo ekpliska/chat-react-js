@@ -4,3 +4,4 @@ export { default as Message } from './Message';
 export { default as DateTime } from './DateTime';
 export { default as CheckMessIcon } from './CheckMessIcon';
 export { default as DialogItem } from './DialogItem';
+export { default as Dialogs } from './Dialogs';

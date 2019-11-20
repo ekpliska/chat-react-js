@@ -1,17 +1,37 @@
 import React from 'react';
-import { Message, DialogItem } from '../../components';
+import { Message, Dialogs } from '../../components';
 
 const Chat = () => {
     return (
         <section className="chat">
-            <div className="dialogs">
-                <DialogItem />
-                <DialogItem />
-                <DialogItem />
-                <DialogItem />
-                <DialogItem />
-                <DialogItem />
-            </div>
+            <Dialogs
+                userId={1}
+                items={[
+                    {
+                        _id: 1,
+                        text: '___text in in a distant faraway galaxy, suddenly',
+                        date: new Date(),
+                        user: {
+                            _id: 1,
+                            fullname: 'Ivan IVANOV',
+                            photo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/61763701-db95-45b3-8622-25c1ca38e1c1-profile_image-70x70.png',
+                            isOnline: true
+                        },
+                        unreaded: 10
+                    },
+                    {
+                        _id: 1,
+                        text: '___text in in a distant faraway galaxy, suddenly',
+                        date: new Date(),
+                        user: {
+                            _id: 1,
+                            fullname: 'Ivan IVANOV',
+                            photo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/61763701-db95-45b3-8622-25c1ca38e1c1-profile_image-70x70.png',
+                            isOnline: true
+                        },
+                        unreaded: 0
+                    }
+                ]} />
             <Message
                 photo="https://static-cdn.jtvnw.net/jtv_user_pictures/61763701-db95-45b3-8622-25c1ca38e1c1-profile_image-70x70.png"
                 text="__text"
