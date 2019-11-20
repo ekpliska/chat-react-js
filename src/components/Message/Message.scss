@@ -71,6 +71,33 @@
     
   }
 
+  &--is-audio {
+    width: 250px;
+    #{$self}__bubble {
+      width: 300px;
+    }
+    #{$self}__audio {
+      &-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      &-btn {
+        button {
+          border: 0;
+          width: 20px;
+          height: 20px;
+          border-radius: 30px;
+          background: #0f3997;
+          cursor: pointer;
+          img {
+            width: 11px;
+          }
+        }
+      }
+    }
+  }
+
   &--incoming {
     display: flex;
     flex-direction: row-reverse;
