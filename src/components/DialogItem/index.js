@@ -6,7 +6,7 @@ import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
 
 import './DialogItem.scss';
-import { DateTime, CheckMessIcon } from '../';
+import { CheckMessIcon } from '../';
 
 const getUserPtoho = (photoPath, username) => {
     if (photoPath) {
@@ -15,11 +15,11 @@ const getUserPtoho = (photoPath, username) => {
     return 'NOT';
 }
 
-const getMessageTime = (date) => {
-    if (isToday(date)) {
-        return format(date, 'HH:mm');
+const getMessageTime = (created_at) => {
+    if (isToday(created_at)) {
+        return format(created_at, 'HH:mm');
     } else {
-        return format(date, 'dd.mm.yyyy');
+        return format(created_at, 'dd.M.yyyy');
     }
 }
 
@@ -35,8 +35,7 @@ const DialogItem = ({ message, user, unreaded, incoming }) => {
                 <div className="dialogs__item-info-top">
                     <b>{user.fullname}</b>
                     <span>
-                        {getMessageTime(message.date)}
-                        {/* <DateTime date={message.date} /> */}
+                        {getMessageTime(message.created_at)}
                     </span>
                 </div>
                 <div className="dialogs__item-info-bottom">

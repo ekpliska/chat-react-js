@@ -1,4 +1,8 @@
 import React from 'react';
+
+import orderBy from 'lodash/orderBy';
+import isToday from 'date-fns/isToday';
+
 import './Dialogs.scss';
 import { DialogItem } from '../';
 
@@ -6,15 +10,15 @@ const Dialogs = ({ items, userId }) => {
     return (
         <div className="dialogs">
             {
-                items && items.map(item => (
-                    <DialogItem 
-                        key={item._id} 
-                        user={item.user} 
-                        message={item} 
+                orderBy(items, ['created_at'], ['desc']).map(item => (
+                    <DialogItem
+                        key={item._id}
+                        user={item.user}
+                        message={item}
                         unreaded={item.unreaded}
-                        incoming={item.user._id === userId ? false : true } />
+                        incoming={item.user._id === userId ? false : true} />
                 ))
-            }
+        }
         </div>
     )
 }

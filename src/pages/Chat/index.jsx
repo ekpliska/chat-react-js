@@ -10,7 +10,7 @@ const Chat = () => {
                     {
                         _id: 1,
                         text: '___text in in a distant faraway galaxy, suddenly',
-                        date: new Date(),
+                        created_at: new Date('10-10-2018'),
                         user: {
                             _id: 1,
                             fullname: 'Ivan IVANOV',
@@ -20,11 +20,11 @@ const Chat = () => {
                         unreaded: 10
                     },
                     {
-                        _id: 1,
+                        _id: 2,
                         text: '___text in in a distant faraway galaxy, suddenly',
-                        date: new Date(),
+                        created_at: new Date(),
                         user: {
-                            _id: 1,
+                            _id: 2,
                             fullname: 'Ivan IVANOV',
                             photo: 'https://static-cdn.jtvnw.net/jtv_user_pictures/61763701-db95-45b3-8622-25c1ca38e1c1-profile_image-70x70.png',
                             isOnline: true
