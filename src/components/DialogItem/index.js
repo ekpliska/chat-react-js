@@ -6,14 +6,7 @@ import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
 
 import './DialogItem.scss';
-import { CheckMessIcon } from '../';
-
-const getUserPtoho = (photoPath, username) => {
-    if (photoPath) {
-        return <img src={photoPath} alt={`${username}`} />;
-    }
-    return 'NOT';
-}
+import { CheckMessIcon, UserPhoto } from '../';
 
 const getMessageTime = (created_at) => {
     if (isToday(created_at)) {
@@ -29,7 +22,7 @@ const DialogItem = ({ message, user, unreaded, incoming }) => {
             'dialogs__item--online': user.isOnline
         })}>
             <div className="dialogs__item-photo">
-                {getUserPtoho(user.photo, user.fullname)}
+                <UserPhoto user={user} />
             </div>
             <div className="dialogs__item-info">
                 <div className="dialogs__item-info-top">

@@ -97,7 +97,7 @@ const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachmen
             <div className="message__content">
                 <CheckMessIcon incoming={incoming} isReaded={isReaded} />
                 <div className="message__photo">
-                    <img src={photo} alt={`Photo ${user.fullName}`} />
+                    <img src={photo} alt={`${user.fullName}`} />
                 </div>
                 <div className="message__info">
                     {
@@ -124,7 +124,7 @@ const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachmen
                                 {
                                     attachments.map((file, index) => (
                                         <div className="message__attachments-item" key={index}>
-                                            <img src={file.url} atl={file.filename} />
+                                            <img src={file.url} alt={`${file.filename}`} />
                                         </div>
                                     ))
                                 }
