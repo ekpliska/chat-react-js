@@ -1,0 +1,99 @@
+.chat {
+    display: flex;
+    background-color: #fff;
+    width: 1140px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.04204);
+    height: 100%;
+    &__sidebar {
+        width: 320px;
+        border-right: 1px solid #f7f8f9;
+        &-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 21px;
+            height: 58px;
+            border-bottom: 1px solid #f7f7f7;
+            margin-bottom: 20px;
+
+            & > div {
+                i {
+                    display: inline-block;
+                    margin-right: 20px;
+                }
+            }
+        }
+
+        &-search {
+            padding: 0 20px 20px 20px;
+            .ant-input {
+                background: #f7f8f9;
+                border: 0;
+                height: 38px;
+                padding: 4px 11px 6px;
+            }
+        }
+
+        &-dialogs {
+            .dialogs {
+                &__item {
+                    padding: 10px 20px;
+                    margin-bottom: 0;
+                    cursor: pointer;
+                    &.active,
+                    &:hover {
+                        background-color: #f3f2ff;
+                    }
+
+                }
+            }
+        }
+
+    }
+    &__dialog {
+        flex: 1;
+        &-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #f7f8f9;
+
+            &-center {
+                text-align: center;
+                .status {
+                    display: inline-block;
+                    color: #d4d4d4;
+                    position: relative;
+                    &--online {
+                        &::before {
+                            background-color: #00c980;
+                        }
+                    }
+                    &::before {
+                        display: block;
+                        content: '';
+                        position: absolute;
+                        top: 5px;
+                        left: -12px;
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 30px;
+                        background-color: #d3d3d3;
+                    }
+                }
+            }
+
+            &-username {
+                font-weight: 500;
+                display: block;
+                margin-bottom: 5px;
+
+            }
+        }
+
+        &-messages {
+            padding: 20px;
+        }
+    }
+}
