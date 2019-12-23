@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Icon, Input } from 'antd';
 
-import { Message, Dialogs } from '../../components';
+import { Message, Dialogs, Status } from '../../components';
 
 import './Chat.scss';
 
@@ -61,11 +61,7 @@ const Chat = () => {
                         <div />
                         <div className="chat__dialog-header-center">
                             <b className="chat__dialog-header-username">User name</b>
-                            <div className="chat__dialog-header-status">
-                                <div className="status status--online">
-                                    Online
-                                </div>
-                            </div>
+                            <Status isOnline />
                         </div>
                         <Icon type="ellipsis" style={{ fontSize: '22px' }} />
                     </div>

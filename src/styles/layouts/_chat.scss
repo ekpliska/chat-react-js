@@ -61,27 +61,6 @@
 
             &-center {
                 text-align: center;
-                .status {
-                    display: inline-block;
-                    color: #d4d4d4;
-                    position: relative;
-                    &--online {
-                        &::before {
-                            background-color: #00c980;
-                        }
-                    }
-                    &::before {
-                        display: block;
-                        content: '';
-                        position: absolute;
-                        top: 5px;
-                        left: -12px;
-                        width: 6px;
-                        height: 6px;
-                        border-radius: 30px;
-                        background-color: #d3d3d3;
-                    }
-                }
             }
 
             &-username {
@@ -94,6 +73,8 @@
 
         &-messages {
             padding: 20px;
+            overflow: auto;
+            height: calc(100% - 50px);
         }
     }
 }
