@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Icon, Input } from 'antd';
 
-import { Message, Dialogs, Status } from '../../components';
+import { Message, Dialogs, Status, ChatInput } from '../../components';
 
 import './Chat.scss';
 
@@ -115,6 +115,7 @@ const Chat = () => {
                         />
 
                     </div>
+                    <ChatInput />
                 </div>
             </div>
             {/* 

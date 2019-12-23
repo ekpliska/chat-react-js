@@ -1,0 +1,35 @@
+.chat-input {
+    padding: 20px;
+    display: flex;
+
+     &__smile-btn {
+        margin-right: 7px;
+        i.anticon {
+            margin-top: 10px;
+        }
+    }
+
+    .ant-btn-link {
+        border: 0;
+        box-shadow: none;
+        color: #202020 !important;
+        opacity: 0.4;
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 55px;
+        margin-left: 15px;
+    }
+
+    input {
+        &:focus {
+            box-shadow: none;
+        }
+    }
+}
