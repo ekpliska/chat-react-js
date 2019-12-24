@@ -8,6 +8,7 @@
     &__sidebar {
         width: 320px;
         border-right: 1px solid #f7f8f9;
+        height: 100%;
         &-header {
             display: flex;
             justify-content: space-between;
@@ -35,7 +36,10 @@
         }
 
         &-dialogs {
+            height: calc(100% - 136px);
             .dialogs {
+                height: 100%;
+                overflow: auto;
                 &__item {
                     padding: 10px 20px;
                     margin-bottom: 0;

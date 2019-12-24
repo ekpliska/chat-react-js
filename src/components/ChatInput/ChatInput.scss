@@ -9,16 +9,6 @@
         }
     }
 
-    .ant-btn-link {
-        border: 0;
-        box-shadow: none;
-        color: #202020 !important;
-        opacity: 0.4;
-        &:hover {
-            opacity: 1;
-        }
-    }
-
     &__actions {
         display: flex;
         align-items: center;

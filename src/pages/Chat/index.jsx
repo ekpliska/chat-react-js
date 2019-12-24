@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon, Input } from 'antd';
+import { Input, Button } from 'antd';
 
 import { Message, Dialogs, Status, ChatInput } from '../../components';
 
@@ -13,10 +13,10 @@ const Chat = () => {
                 <div className="chat__sidebar">
                     <div className="chat__sidebar-header">
                         <div>
-                            <Icon type="team" />
+                            <Button type="link" icon="team" />
                             <span>Список диалогов</span>
                         </div>
-                        <Icon type="form" />
+                        <Button type="link" icon="form" />
                     </div>
                     <div className="chat__sidebar-search">
                         <Input.Search
@@ -51,7 +51,211 @@ const Chat = () => {
                                         isOnline: true
                                     },
                                     unreaded: 0
-                                }
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
+                                {
+                                    _id: 2,
+                                    text: '___text in in a distant faraway galaxy, suddenly',
+                                    created_at: new Date(),
+                                    user: {
+                                        _id: 'asd',
+                                        fullname: 'Petr Ivanov',
+                                        photo: null,
+                                        isOnline: true
+                                    },
+                                    unreaded: 0
+                                },
                             ]} 
                         />
                     </div>
@@ -63,7 +267,7 @@ const Chat = () => {
                             <b className="chat__dialog-header-username">User name</b>
                             <Status isOnline />
                         </div>
-                        <Icon type="ellipsis" style={{ fontSize: '22px' }} />
+                        <Button type="link" icon="ellipsis" style={{ fontSize: '22px' }} />
                     </div>
                     <div className="chat__dialog-messages">
                         <Message
