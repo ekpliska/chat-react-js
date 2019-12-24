@@ -1,4 +1,15 @@
 .dialogs {
+
+  &__search {
+    padding: 2px 20px 20px 20px;
+    .ant-input {
+        background: #f7f8f9;
+        border: 0;
+        height: 38px;
+        padding: 4px 11px 6px;
+    }
+  }
+
   &__item {
       display: flex;
       margin-bottom: 15px;

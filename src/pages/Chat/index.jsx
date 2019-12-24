@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Input, Button } from 'antd';
+import { Button } from 'antd';
 
-import { Message, Dialogs, Status, ChatInput } from '../../components';
+import { Message, Status, ChatInput } from '../../components';
+import { Dialogs } from '../../containers';
 
 import './Chat.scss';
 
@@ -17,12 +18,6 @@ const Chat = () => {
                             <span>Список диалогов</span>
                         </div>
                         <Button type="link" icon="form" />
-                    </div>
-                    <div className="chat__sidebar-search">
-                        <Input.Search
-                            placeholder="Поиск среди контактов"
-                            onSearch={value => console.log(value)}
-                        />
                     </div>
                     <div className="chat__sidebar-dialogs">
                         <Dialogs
@@ -51,211 +46,7 @@ const Chat = () => {
                                         isOnline: true
                                     },
                                     unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                },
+                                }
                             ]} 
                         />
                     </div>
