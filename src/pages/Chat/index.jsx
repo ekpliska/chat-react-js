@@ -20,35 +20,7 @@ const Chat = () => {
                         <Button type="link" icon="form" />
                     </div>
                     <div className="chat__sidebar-dialogs">
-                        <Dialogs
-                            userId={1}
-                            items={[
-                                {
-                                    _id: 1,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date('10-10-2018'),
-                                    user: {
-                                        _id: 'qwe',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 10
-                                },
-                                {
-                                    _id: 2,
-                                    text: '___text in in a distant faraway galaxy, suddenly',
-                                    created_at: new Date(),
-                                    user: {
-                                        _id: 'asd',
-                                        fullname: 'Petr Ivanov',
-                                        photo: null,
-                                        isOnline: true
-                                    },
-                                    unreaded: 0
-                                }
-                            ]} 
-                        />
+                        <Dialogs userId={1} />
                     </div>
                 </div>
                 <div className="chat__dialog">

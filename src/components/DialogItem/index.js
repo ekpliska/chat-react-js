@@ -28,7 +28,8 @@ const DialogItem = ({ message, user, unreaded, incoming }) => {
                 <div className="dialogs__item-info-top">
                     <b>{user.fullname}</b>
                     <span>
-                        {getMessageTime(message.created_at)}
+                        %todo
+                        {/* {getMessageTime(message.created_at)} */}
                     </span>
                 </div>
                 <div className="dialogs__item-info-bottom">
