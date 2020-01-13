@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Button } from 'antd';
 
-import { Messages, Status, ChatInput } from '../../components';
-import { Dialogs } from '../../containers';
+import { Status, ChatInput } from '../../components';
+import { Dialogs, Messages } from '../../containers';
 
 import './Chat.scss';
 

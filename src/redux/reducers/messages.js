@@ -1,5 +1,5 @@
 const initialState = {
-    items: []
+    items: null
 };
 
 // action.type, action.payload
