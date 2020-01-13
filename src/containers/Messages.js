@@ -5,7 +5,7 @@ import { Messages as BaseMessages } from '../components';
 
 import { messagesActions } from '../redux/actions';
 
-const Messages = ({ currentDialogId, fetchMessages, items }) => {
+const Messages = ({ currentDialogId, fetchMessages, items, isLoading }) => {
 
     useEffect(() => {
         if (currentDialogId) {
@@ -16,9 +16,13 @@ const Messages = ({ currentDialogId, fetchMessages, items }) => {
     return (
         <BaseMessages 
             items={ items }
+            isLoading={ isLoading }
         />
     )
 }
 
 export default connect(
-    ({ dialogs, messages }) => ({ currentDialogId: dialogs.currentDialogId, items: messages.items  }), messagesActions)(Messages);
+    ({ dialogs, messages }) => ({ 
+        currentDialogId: dialogs.currentDialogId, 
+        items: messages.items,
+        isLoading: messages.isLoading }), messagesActions)(Messages);

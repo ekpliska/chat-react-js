@@ -1,0 +1,11 @@
+@import "../../styles/variables";
+
+.messages {
+  height: 100%;
+  &--loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+}

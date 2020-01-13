@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import './Message.scss';
 
-import { DateTime, CheckMessIcon } from '../';
+import { DateTime, CheckMessIcon, UserPhoto } from '../';
 
 import { convertCurrentTime } from '../../utils/helpers';
 
@@ -97,7 +97,8 @@ const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachmen
             <div className="message__content">
                 <CheckMessIcon incoming={incoming} isReaded={isReaded} />
                 <div className="message__photo">
-                    <img src={photo} alt={`${user.fullName}`} />
+                    <UserPhoto user={user} />
+                    {/* <img src={photo} alt={`${user.fullName}`} /> */}
                 </div>
                 <div className="message__info">
                     {

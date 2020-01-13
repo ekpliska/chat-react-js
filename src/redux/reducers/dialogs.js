@@ -1,6 +1,7 @@
 const initialState = {
     items: [],
-    currentDialogId: null
+    currentDialogId: null,
+    isLoading: false
 };
 
 // action.type, action.payload
