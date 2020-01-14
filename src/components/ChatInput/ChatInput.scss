@@ -28,6 +28,12 @@
         }
     }
 
+    &__emoji-picker {
+        position: absolute;
+        bottom: 59px;
+        z-index: 1;
+    }
+
     input {
         &:focus {
             box-shadow: none;
