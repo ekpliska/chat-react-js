@@ -2,6 +2,9 @@
 
 .messages {
   height: 100%;
+  padding: 20px;
+  padding-bottom: 0;
+  overflow: auto;
   &--loading {
     display: flex;
     align-items: center;

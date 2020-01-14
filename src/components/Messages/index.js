@@ -8,21 +8,27 @@ import { Message } from '..';
 
 import './Messages.scss';
 
-const Messages = ({ isLoading, items }) => {
+const Messages = ({ blockRef, isLoading, items }) => {
     return (
-        <div className={classNames("messages", { "messages--loading": isLoading })}>
-            {
-                isLoading
-                    ? (
-                        <Spin tip="Загрузка..." />
-                    )
-                    : items && !isLoading 
+        <div className="chat__dialog-messages">
+            <div ref={ blockRef } className={ classNames("messages", { "messages--loading": isLoading }) }>
+                {
+                    isLoading
                         ? (
-                            items.map((item, index) => <Message {...item} />)
-                        ) :  (
-                            <Empty description="Нет сообщений" />
+                            <Spin tip="Загрузка..." />
                         )
-                }
+                        : items && !isLoading 
+                            ? (
+                                items.length > 0 ? (
+                                    items.map((item, index) => <Message key={ index } {...item} />)
+                                ) : (
+                                    <Empty description="Данный диалог не содержит сообщений" />
+                                )
+                            ) :  (
+                                <Empty description="Выберите диалог" />
+                            )
+                    }
+            </div>
         </div>
     )
     //     <div>

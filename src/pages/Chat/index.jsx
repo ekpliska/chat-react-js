@@ -32,9 +32,7 @@ const Chat = () => {
                         </div>
                         <Button type="link" icon="ellipsis" style={{ fontSize: '22px' }} />
                     </div>
-                    <div className="chat__dialog-messages">
-                        <Messages />
-                    </div>
+                    <Messages />
                     <ChatInput />
                 </div>
             </div>
