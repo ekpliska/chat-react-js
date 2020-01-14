@@ -43,6 +43,11 @@
         }
       }
     }
+
+    &--selected {
+      background-color: #f2f1fd;
+    }
+
     &-info {
       display: flex;
       flex-direction: column;
