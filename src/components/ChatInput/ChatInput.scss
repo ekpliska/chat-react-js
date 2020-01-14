@@ -15,6 +15,17 @@
         justify-content: space-between;
         width: 55px;
         margin-left: 15px;
+        &-upload-btn {
+            input {
+                cursor: pointer;
+            }
+            &:hover {
+                button {
+                    opacity: 1;
+                }
+            }
+
+        }
     }
 
     input {
