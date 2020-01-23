@@ -14,6 +14,7 @@ const LoginForm = (props) => {
         handleChange,
         handleBlur,
         handleSubmit,
+        isSubmitting,
     } = props;
     return (
         <div>
@@ -23,13 +24,13 @@ const LoginForm = (props) => {
             </div>
             <Panel>
                 <Form className="login-form">
-                    <Form.Item validateStatus={validateField('username', touched, errors)} hasFeedback
-                        help={!touched.username ? "" : errors.username}>
-                        <Input id="username" name="username" value={values.username}
+                    <Form.Item validateStatus={validateField('email', touched, errors)} hasFeedback
+                        help={!touched.email ? "" : errors.email}>
+                        <Input id="email" name="email" value={values.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
                             prefix={<Icon type="name" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="Ваше имя" size="large" />
+                            placeholder="Email" size="large" />
 
                     </Form.Item>
                     <Form.Item validateStatus={validateField('password', touched, errors)} hasFeedback
@@ -41,7 +42,15 @@ const LoginForm = (props) => {
                             type="password" placeholder="Пароль" size="large" />
                     </Form.Item>
                     <Form.Item>
-                        <Button onClick={handleSubmit} className="button__large" type="primary" size="large">Войти</Button>
+                        <Button 
+                            className="button__large" 
+                            type="primary" 
+                            size="large"
+                            onClick={handleSubmit} 
+                            disabled={isSubmitting}
+                        >
+                            Войти
+                        </Button>
                     </Form.Item>
                     <Link className="auth__register-link" to="/signup">Зарегистрироваться</Link>
                 </Form>
