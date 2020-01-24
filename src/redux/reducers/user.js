@@ -1,6 +1,8 @@
 
 const initialState = {
-    data: false
+    data: false,
+    isAuth: false,
+    token: window.localStorage.token
 };
 
 // action.type, action.payload
@@ -10,7 +12,14 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 data: payload,
+                isAuth: true,
+                token: window.localStorage.token
             };
+        case 'USER:SET_IS_AUTH': 
+            return {
+                ...state,
+                isAuth: payload
+            }
         default:
             return state;
     }

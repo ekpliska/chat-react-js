@@ -4,9 +4,8 @@ import LoginForm from '../components/LoginForm';
 import { withFormik } from 'formik';
 
 import validateForm from '../../../utils/validate';
-import { notification } from '../../../utils/helpers';
 
-import { axios } from '../../../core';
+import store from '../../../redux/store';
 import { userActions } from '../../../redux/actions';
 
 const LoginFormConnect = connect(
@@ -25,30 +24,18 @@ const LoginFormContainer = withFormik({
         validateForm({ isAuth: false, values, errors });
         return errors;
     },
-    handleSubmit: (values, { setSubmitting }) => {
-        return axios
-            .post('/user/sing-in', values)
-            .then(({ data }) => {
-                const { success, token } = data;
-                console.log('data', data);
-                if (success === false) {
-                    notification({
-                        title: 'Ошибка авторизации',
-                        description: 'Неверный email или пароль',
-                        type: 'error'
-                    });
-                } else {
-                    notification({
-                        title: 'Авторизация',
-                        description: 'Успех',
-                        type: 'success'
-                    });
+    handleSubmit: (values, { setSubmitting, props }) => {
+        store
+            .dispatch(userActions.fetchUserSingIn(values))
+            .then(({ success }) => {
+                
+                
+                if (success === true) {
+                    console.log('handleSubmit', props);
+                    setTimeout(() => {
+                        props.history.push('/');
+                    }, 2000);
                 }
-                // console.log(data);
-                // localStorage.tolen = data.token;
-                setSubmitting(false);
-            })
-            .catch(() => {
                 setSubmitting(false);
             });
     },
