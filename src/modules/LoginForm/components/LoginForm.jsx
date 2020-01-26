@@ -29,7 +29,7 @@ const LoginForm = (props) => {
                         <Input id="email" name="email" value={values.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            prefix={<Icon type="name" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             placeholder="Email" size="large" />
 
                     </Form.Item>

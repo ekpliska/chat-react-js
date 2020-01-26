@@ -8,6 +8,7 @@ export default withFormik({
         email: '',
         fullname: '',
         password: '',
+        repeat_password: ''
     }),
     validate: values => {
         let errors = {};
