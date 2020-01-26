@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import { Form, Icon } from 'antd';
 
-import { validateField } from '../../../utils/helpers';
 import { Button, Panel, FormField } from '../../../components';
 
 const success = true;

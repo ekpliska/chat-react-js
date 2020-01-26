@@ -1,10 +1,9 @@
 import React from 'react';
-import { Form, Icon, Input } from 'antd';
-import { validateField } from '../../../utils/helpers';
-import { Button, Panel } from '../../../components';
 import { Link } from 'react-router-dom';
 
+import { Form } from 'antd';
 
+import { Button, Panel, FormField } from '../../../components';
 
 const LoginForm = (props) => {
     const {
@@ -24,29 +23,34 @@ const LoginForm = (props) => {
             </div>
             <Panel>
                 <Form className="login-form">
-                    <Form.Item validateStatus={validateField('email', touched, errors)} hasFeedback
-                        help={!touched.email ? "" : errors.email}>
-                        <Input id="email" name="email" value={values.email}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder="Email" size="large" />
+                    <FormField
+                        name="email"
+                        values={values}
+                        placeholder="Электронная почта"
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        icon="mail"
+                        touched={touched}
+                        errors={errors}
+                    />
 
-                    </Form.Item>
-                    <Form.Item validateStatus={validateField('password', touched, errors)} hasFeedback
-                        help={!touched.password ? "" : errors.password}>
-                        <Input id="password" name="password" value={values.password}
-                            onChange={handleChange}
-                            onBlur={handleBlur} 
-                            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            type="password" placeholder="Пароль" size="large" />
-                    </Form.Item>
+                    <FormField
+                        type="password"
+                        name="password"
+                        values={values}
+                        placeholder="Пароль"
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        icon="lock"
+                        touched={touched}
+                        errors={errors}
+                    />
                     <Form.Item>
-                        <Button 
-                            className="button__large" 
-                            type="primary" 
+                        <Button
+                            className="button__large"
+                            type="primary"
                             size="large"
-                            onClick={handleSubmit} 
+                            onClick={handleSubmit}
                             disabled={isSubmitting}
                         >
                             Войти
