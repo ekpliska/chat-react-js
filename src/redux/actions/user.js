@@ -36,7 +36,31 @@ const actions = {
                     dispatch(actions.fetchUserData());
                     return data;
                 }
-            })        
+            })
+    },
+    fetchUserSingUp: (postData) => dispatch => {
+        return userAPI.singUp(postData)
+            .then(({ data }) => {
+                console.log('data', data);
+                const { success, token } = data;
+                if (success === false) {
+                    notification({
+                        title: 'Ошибка регистрации',
+                        description: 'Не верные данные',
+                        type: 'error'
+                    });
+                } else {
+                    notification({
+                        title: 'Регистрация',
+                        description: 'Вы были успешно зарегистрированы',
+                        type: 'success'
+                    });
+                    window.axios.defaults.headers.common['token'] = token;
+                    window.localStorage['token'] = token;
+                    dispatch(actions.fetchUserData());
+                    return data;
+                }
+            })
     }
 };
 

@@ -9,7 +9,7 @@ const App = (props) => {
 	
 	return (
 		<div className="main">
-			<Route exact path={["/login", "/signup"]} component={Auth} />
+			<Route exact path={["/login", "/signup", "/signup/check"]} component={Auth} />
 			<Route exact path={"/chat"} component={Chat} />
 			<Route exact path="/" render={ () => isAuth ? <Chat /> : <Redirect to="/login" /> } />
 		</div>

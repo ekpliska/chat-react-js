@@ -28,14 +28,14 @@ const LoginFormContainer = withFormik({
         store
             .dispatch(userActions.fetchUserSingIn(values))
             .then(({ success }) => {
-                
-                
                 if (success === true) {
-                    console.log('handleSubmit', props);
                     setTimeout(() => {
                         props.history.push('/');
                     }, 2000);
                 }
+                setSubmitting(false);
+            })
+            .catch(() => {
                 setSubmitting(false);
             });
     },
