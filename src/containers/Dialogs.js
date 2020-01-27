@@ -11,18 +11,20 @@ const Dialogs = ({ ref, fetchDialogs, currentDialogId, setCurrentDialogId, items
 
     const onChangeInput = (value = '') => {
         setFilteredItems(items.filter(dialog => {
-            return dialog.user.fullname.toLowerCase().indexOf(value.toLocaleLowerCase()) >= 0;
+            return dialog.author.fullname.toLowerCase().indexOf(value.toLocaleLowerCase()) >= 0;
         }));
         setValue(value);
     };
 
     useEffect(() => {
-        if (!items.length) {
-            fetchDialogs();
-        } else {
-            setFilteredItems(items);
+        if (items.length) {
+            onChangeInput();
         }
     }, [items]);
+
+    useEffect(() => {
+        fetchDialogs();
+    }, []);
 
     return (
         <BaseDialogs 

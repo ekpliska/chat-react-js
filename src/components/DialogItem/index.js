@@ -16,18 +16,18 @@ const getMessageTime = (created_at) => {
     }
 }
 
-const DialogItem = ({ _id, message, user, unreaded, incoming, currentDialogId, onSelect }) => {
+const DialogItem = ({ _id, message, user, unreaded, incoming, currentDialogId, onSelect, lastMessage }) => {
     return (
         <div className={classNames('dialogs__item', {
-            'dialogs__item--online': user.isOnline,
+            'dialogs__item--online': lastMessage.user.isOnline,
             'dialogs__item--selected': currentDialogId === _id,
         })} onClick={ onSelect.bind(this, _id) }>
             <div className="dialogs__item-photo">
-                <UserPhoto user={user} />
+                <UserPhoto user={lastMessage.user} />
             </div>
             <div className="dialogs__item-info">
                 <div className="dialogs__item-info-top">
-                    <b>{user.fullname}</b>
+                    <b>{lastMessage.user.fullname}</b>
                     <span>
                         %todo
                         {/* {getMessageTime(message.created_at)} */}
