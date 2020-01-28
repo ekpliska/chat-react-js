@@ -23,12 +23,13 @@ const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId, onSelec
                         <DialogItem
                             key={ item._id }
                             _id={ item._id }
-                            user={ item.user }
+                            user={ item.author._id }
                             message={ item }
                             unreaded={ item.unreaded }
-                            incoming={ item.user._id === userId ? false : true } 
+                            incoming={ item.author._id === userId ? false : true } 
                             currentDialogId={ currentDialogId }
                             onSelect={ onSelectDialog }
+                            { ...item }
                         />
                         ))
                 )

@@ -17,6 +17,7 @@ const getMessageTime = (created_at) => {
 }
 
 const DialogItem = ({ _id, message, user, unreaded, incoming, currentDialogId, onSelect, lastMessage }) => {
+    console.log(lastMessage);
     return (
         <div className={classNames('dialogs__item', {
             'dialogs__item--online': lastMessage.user.isOnline,
