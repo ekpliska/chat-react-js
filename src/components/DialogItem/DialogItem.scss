@@ -13,6 +13,7 @@
   &__item {
       display: flex;
       margin-bottom: 15px;
+      color: #000;
       $item: &;
     &-photo {
       position: relative;

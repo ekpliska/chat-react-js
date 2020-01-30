@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import { socket } from '../core';
+
 import { Dialogs as BaseDialogs } from '../components';
 
 import { dialogsActions } from '../redux/actions';
@@ -25,6 +27,11 @@ const Dialogs = ({ ref, fetchDialogs, currentDialogId, setCurrentDialogId, items
     useEffect(() => {
         fetchDialogs();
     }, []);
+
+    socket.on('SERVER:DIALOG_CREATED', (data) => {
+        console.log(data);
+        fetchDialogs();
+    });
 
     return (
         <BaseDialogs 

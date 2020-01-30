@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import format from 'date-fns/format';
@@ -16,47 +17,49 @@ const getMessageTime = (created_at) => {
     }
 }
 
-const DialogItem = ({ _id, message, user, unreaded, incoming, currentDialogId, onSelect, lastMessage }) => {
-    console.log(lastMessage);
+const DialogItem = ({ _id, unreaded, incoming, currentDialogId, onSelect, lastMessage }) => {
     return (
-        <div className={classNames('dialogs__item', {
-            'dialogs__item--online': lastMessage.user.isOnline,
-            'dialogs__item--selected': currentDialogId === _id,
-        })} onClick={ onSelect.bind(this, _id) }>
-            <div className="dialogs__item-photo">
-                <UserPhoto user={lastMessage.user} />
-            </div>
-            <div className="dialogs__item-info">
-                <div className="dialogs__item-info-top">
-                    <b>{lastMessage.user.fullname}</b>
-                    <span>
-                        %todo
-                        {/* {getMessageTime(message.created_at)} */}
-                    </span>
+        <Link to={`/dialog/${_id}`}>
+            <div className={classNames('dialogs__item', {
+                    'dialogs__item--online': lastMessage.user.isOnline,
+                    'dialogs__item--selected': currentDialogId === _id,
+                    })} 
+                onClick={ onSelect.bind(this, _id) }
+            >
+                <div className="dialogs__item-photo">
+                    <UserPhoto user={lastMessage.user} />
                 </div>
-                <div className="dialogs__item-info-bottom">
-                    <p>
-                        {message.text}
-                    </p>
-                    {
-                        !incoming && <CheckMessIcon incoming={false} isReaded={false} />
-                    }
-                    {
-                        unreaded > 0 && (
-                            <div className="dialogs__item-info-bottom-count">
-                                {unreaded}
-                            </div>
-                        )
-                    }
+                <div className="dialogs__item-info">
+                    <div className="dialogs__item-info-top">
+                        <b>{lastMessage.user.fullname}</b>
+                        <span>
+                            %todo
+                            {/* {getMessageTime(message.created_at)} */}
+                        </span>
+                    </div>
+                    <div className="dialogs__item-info-bottom">
+                        <p>
+                            {lastMessage.text}
+                        </p>
+                        {
+                            !incoming && <CheckMessIcon incoming={false} isReaded={false} />
+                        }
+                        {
+                            unreaded > 0 && (
+                                <div className="dialogs__item-info-bottom-count">
+                                    {unreaded}
+                                </div>
+                            )
+                        }
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
 DialogItem.propTypes = {
-    user: PropTypes.object,
-    message: PropTypes.object,
+    lastMessage: PropTypes.object,
 }
 
 export default DialogItem;
