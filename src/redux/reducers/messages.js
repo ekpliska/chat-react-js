@@ -6,6 +6,11 @@ const initialState = {
 // action.type, action.payload
 export default (state = initialState, { type, payload }) => {
     switch (type) {
+        case 'MESSAGES:ADD_MESSAGE':
+            return {
+                ...state,
+                items: [...state.items, payload]
+            };
         case 'MESSAGES:SET_ITEMS':
             return {
                 ...state,

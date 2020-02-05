@@ -22,16 +22,17 @@ const Dialogs = ({ ref, fetchDialogs, currentDialogId, setCurrentDialogId, items
         if (items.length) {
             onChangeInput();
         }
+        socket.on('SERVER:DIALOG_CREATED', (data) => {
+            console.log(data);
+            fetchDialogs();
+        });
     }, [items]);
 
     useEffect(() => {
         fetchDialogs();
     }, []);
 
-    socket.on('SERVER:DIALOG_CREATED', (data) => {
-        console.log(data);
-        fetchDialogs();
-    });
+    
 
     return (
         <BaseDialogs 

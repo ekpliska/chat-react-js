@@ -97,7 +97,7 @@ const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachmen
             <div className="message__content">
                 <CheckMessIcon incoming={incoming} isReaded={isReaded} />
                 <div className="message__photo">
-                    <UserPhoto user={user} />
+                    {/* <UserPhoto user={user} /> */}
                     {/* <img src={photo} alt={`${user.fullName}`} /> */}
                 </div>
                 <div className="message__info">

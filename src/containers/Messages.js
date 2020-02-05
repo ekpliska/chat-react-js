@@ -5,19 +5,31 @@ import { Messages as BaseMessages } from '../components';
 
 import { messagesActions } from '../redux/actions';
 
-const Messages = ({ currentDialogId, fetchMessages, items, isLoading }) => {
+import { socket } from '../core';
+
+const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading }) => {
 
     const messagesRef = useRef(null);
 
+    const onNewMessage = (data) => {
+        addMessage(data);
+    }
     useEffect(() => {
         if (currentDialogId) {
             fetchMessages(currentDialogId);
+        }
+        socket.on('SERVER:MESSAGES_CREATED', onNewMessage);
+
+        return () => {
+            socket.removeListener("SERVER:MESSAGES_CREATED", onNewMessage);
         }
     }, [currentDialogId]);
 
     useEffect(() => {
         messagesRef.current.scrollTo(0, 9999);
     }, [items]);
+
+    
 
     return (
         <BaseMessages
