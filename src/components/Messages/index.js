@@ -8,7 +8,8 @@ import { Message } from '..';
 
 import './Messages.scss';
 
-const Messages = ({ blockRef, isLoading, items }) => {
+// incoming - входящее сообщение
+const Messages = ({ blockRef, isLoading, items, user }) => {
     return (
         <div className="chat__dialog-messages">
             <div ref={ blockRef } className={ classNames("messages", { "messages--loading": isLoading }) }>
@@ -20,7 +21,7 @@ const Messages = ({ blockRef, isLoading, items }) => {
                         : items && !isLoading 
                             ? (
                                 items.length > 0 ? (
-                                    items.map((item, index) => <Message key={ index } {...item} />)
+                                    items.map((item, index) => <Message key={ index } {...item} incoming={ user._id === item.user._id } />)
                                 ) : (
                                     <Empty description="Данный диалог не содержит сообщений" />
                                 )

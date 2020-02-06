@@ -89,7 +89,7 @@ const AudioMessage = ({ audio }) => {
 const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachments, isTyping }) => {
     return (
         <div className={classNames('message', {
-            'message--incoming': !incoming,
+            'message--incoming': incoming,
             'message--is-typing': isTyping,
             'message--image': attachments && attachments.length === 1,
             'message--is-audio': audio,
@@ -97,7 +97,7 @@ const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachmen
             <div className="message__content">
                 <CheckMessIcon incoming={incoming} isReaded={isReaded} />
                 <div className="message__photo">
-                    {/* <UserPhoto user={user} /> */}
+                    <UserPhoto user={user} />
                     {/* <img src={photo} alt={`${user.fullName}`} /> */}
                 </div>
                 <div className="message__info">

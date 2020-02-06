@@ -15,6 +15,9 @@ const actions = {
             });
         }
     },
+    fetchSendMessage: (dialogId, messageText) => dispatch => {
+        messagesAPI.send(dialogId, messageText);
+    },
     setIsLoading: bool => ({
         type: 'MESSAGES:SET_IS_LOADING',
         payload: bool

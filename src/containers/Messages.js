@@ -7,7 +7,7 @@ import { messagesActions } from '../redux/actions';
 
 import { socket } from '../core';
 
-const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading }) => {
+const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading, user }) => {
 
     const messagesRef = useRef(null);
 
@@ -33,6 +33,7 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading
 
     return (
         <BaseMessages
+            user={ user }
             blockRef={ messagesRef }
             items={ items }
             isLoading={ isLoading }
@@ -41,7 +42,10 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading
 }
 
 export default connect(
-    ({ dialogs, messages }) => ({ 
+    ({ dialogs, messages, user }) => ({ 
         currentDialogId: dialogs.currentDialogId, 
         items: messages.items,
-        isLoading: messages.isLoading }), messagesActions)(Messages);
+        isLoading: messages.isLoading,
+        user: user.data,
+    }), 
+    messagesActions)(Messages);
