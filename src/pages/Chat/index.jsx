@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import { Button } from 'antd';
 
-import { Status } from '../../components';
-import { Dialogs, Messages, ChatInput } from '../../containers';
+import { Dialogs, Messages, ChatInput, Status } from '../../containers';
 
 import './Chat.scss';
 
@@ -25,14 +24,8 @@ const Chat = ({ user }) => {
                     </div>
                 </div>
                 <div className="chat__dialog">
-                    <div className="chat__dialog-header">
-                        <div />
-                        <div className="chat__dialog-header-center">
-                            <b className="chat__dialog-header-username">
-                                { user.fullname }
-                            </b>
-                            <Status isOnline />
-                        </div>
+                    <div className="chat__dialog-header"><div />
+                        <Status isOnline />
                         <Button type="link" icon="ellipsis" style={{ fontSize: '22px' }} />
                     </div>
                     <Messages />
@@ -44,7 +37,7 @@ const Chat = ({ user }) => {
 }
 
 export default connect(
-    ({ user }) => ({ 
+    ({ user }) => ({
         user: user.data
     }),
     null

@@ -5,13 +5,19 @@ import classNames from 'classnames';
 
 import './Status.scss';
 
-const Status = ({ isOnline }) => {
+const Status = ({ isOnline, fullname }) => {
     return (
-        <div className="chat__dialog-header-status">
-            <div className={classNames('status', { 'status--online': isOnline })}>
-                Online
+        <div className="chat__dialog-header-center">
+            <b className="chat__dialog-header-username">
+                { fullname }
+            </b>
+            <div className="chat__dialog-header-status">
+                <div className={classNames('status', { 'status--online': isOnline })}>
+                    { isOnline ? 'В сети' : 'Офлайн' }
+                </div>
             </div>
         </div>
+
     )
 }
 
