@@ -9,7 +9,7 @@ import { Message } from '..';
 import './Messages.scss';
 
 // incoming - входящее сообщение
-const Messages = ({ blockRef, isLoading, items, user }) => {
+const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage }) => {
     return (
         <div className="chat__dialog-messages">
             <div ref={ blockRef } className={ classNames("messages", { "messages--loading": isLoading }) }>
@@ -21,7 +21,14 @@ const Messages = ({ blockRef, isLoading, items, user }) => {
                         : items && !isLoading 
                             ? (
                                 items.length > 0 ? (
-                                    items.map((item, index) => <Message key={ index } {...item} incoming={ user._id === item.user._id } />)
+                                    items.map((item, index) => (
+                                        <Message 
+                                            key={ index } 
+                                            {...item} 
+                                            incoming={ user._id === item.user._id } 
+                                            onRemoveMessage={ onRemoveMessage.bind(this, item._id) }
+                                        />
+                                    ))
                                 ) : (
                                     <Empty description="Данный диалог не содержит сообщений" />
                                 )

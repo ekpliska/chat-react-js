@@ -13,6 +13,11 @@
     // max-width: 440px;
     margin-bottom: 20px;
     position: relative;
+    &:hover {
+      #{$self}__icon-actions {
+        display: block;
+      }
+    }
   }
 
   &__photo {
@@ -62,14 +67,24 @@
     opacity: 0.4;
   }
 
-  &__icon-readed {
+  &__icon {
+    &-readed {
     position: absolute;
     bottom: 10px;
     left: -30px;
     width: 13px;
 
-    &--no {
-      left: -30px;
+      &--no {
+        left: -30px;
+      }
+    }
+
+    &-actions {
+      display: none;
+      transform: rotate(90deg);
+      position: absolute;
+      left: -31px;
+      top: -5px;
     }
     
   }

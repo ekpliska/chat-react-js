@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-import './Message.scss';
+import { Popover, Button, Icon } from 'antd';
 
 import { DateTime, CheckMessIcon, UserPhoto } from '../';
 
@@ -11,6 +11,8 @@ import { convertCurrentTime } from '../../utils/helpers';
 import waveSvg from '../../asset/wave.svg';
 import playSvg from '../../asset/play.svg';
 import pauseSvg from '../../asset/pause.svg';
+
+import './Message.scss';
 
 const AudioMessage = ({ audio }) => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -86,7 +88,7 @@ const AudioMessage = ({ audio }) => {
     )
 }
 
-const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachments, isTyping }) => {
+const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachments, isTyping, onRemoveMessage }) => {
     return (
         <div className={classNames('message', {
             'message--incoming': incoming,
@@ -96,6 +98,17 @@ const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachmen
         })}>
             <div className="message__content">
                 <CheckMessIcon incoming={!incoming} isReaded={isReaded} />
+                <Popover
+                    content={
+                        <div>
+                            <Button onClick={onRemoveMessage}>Удалить сообщение</Button>
+                        </div>
+                    }
+                    trigger="click">
+                    <div className="message__icon-actions">
+                        <Button type="link" shape="circle" icon="ellipsis" />
+                    </div>
+                </Popover>
                 <div className="message__photo">
                     <UserPhoto user={user} />
                 </div>
