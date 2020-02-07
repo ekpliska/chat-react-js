@@ -8,17 +8,27 @@ const actions = {
         type: 'USER:SET_DATA',
         payload: data
     }),
+    setIsAuth: bool => ({
+        type: 'USER:SET_IS_AUTH',
+        payload: bool
+    }),
     fetchUserData: () => dispatch => {
         userAPI
             .myProfile()
             .then(({ data }) => {
                 dispatch(actions.setUserData(data))
+            })
+            .catch(err => {
+                if (err.response.status === 403) {
+                    dispatch(actions.setIsAuth(false));
+                    delete window.localStorage.token;
+                }
             });
     },
     fetchUserSingIn: (postData) => dispatch => {
         return userAPI.singIn(postData)
             .then(({ data }) => {
-                const { success, token } = data;
+                const { token } = data;
                 notification({
                     title: 'Авторизация',
                     description: 'Успех',
@@ -27,6 +37,7 @@ const actions = {
                 window.axios.defaults.headers.common['token'] = token;
                 window.localStorage['token'] = token;
                 dispatch(actions.fetchUserData());
+                dispatch(actions.setIsAuth(true));
                 return data;
             })
             .catch(({ response }) => {
@@ -42,8 +53,7 @@ const actions = {
     fetchUserSingUp: (postData) => dispatch => {
         return userAPI.singUp(postData)
             .then(({ data }) => {
-                console.log('data', data);
-                const { success, token } = data;
+                const { token } = data;
                 notification({
                     title: 'Регистрация',
                     description: 'Вы были успешно зарегистрированы',
