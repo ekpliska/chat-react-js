@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { Button } from 'antd';
 
-import { Dialogs, Messages, ChatInput, Status } from '../../containers';
+import { Dialogs, Messages, ChatInput, Status, SideBar } from '../../containers';
 
 import './Chat.scss';
 
@@ -12,15 +12,9 @@ const Chat = ({ user }) => {
         <section className="chat-page">
             <div className="chat">
                 <div className="chat__sidebar">
-                    <div className="chat__sidebar-header">
-                        <div>
-                            <Button type="link" icon="team" />
-                            <span>Список диалогов</span>
-                        </div>
-                        <Button type="link" icon="form" />
-                    </div>
+                    <SideBar />
                     <div className="chat__sidebar-dialogs">
-                        <Dialogs userId={1} />
+                        <Dialogs userId={ user && user._id } />
                     </div>
                 </div>
                 <div className="chat__dialog">
