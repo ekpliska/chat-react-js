@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import { Dialogs, Messages, ChatInput, Status, SideBar } from '../../containers';
 
+import { dialogsActions } from '../../redux/actions';
+
 import './Chat.scss';
 
-const Chat = ({ user }) => {
+const Chat = (props) => {
+    console.log('props', props);
+    
+    const { user, setCurrentDialogId } = props;
+
+    useEffect(() => {
+        const { location: { pathname } } = props;
+        const dialogId = pathname.split('/').pop();
+        setCurrentDialogId(dialogId);
+    }, [props.location.pathname]);
+
     return (
         <section className="chat-page">
             <div className="chat">
@@ -27,9 +40,9 @@ const Chat = ({ user }) => {
     )
 }
 
-export default connect(
+export default withRouter(connect(
     ({ user }) => ({
         user: user.data
     }),
-    null
-)(Chat);
+    dialogsActions
+)(Chat));

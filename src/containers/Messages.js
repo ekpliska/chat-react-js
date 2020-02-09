@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import { Empty } from "antd";
 
 import { Messages as BaseMessages } from '../components';
 
@@ -26,10 +27,12 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading
     }, [currentDialogId]);
 
     useEffect(() => {
-        messagesRef.current.scrollTo(0, 9999);
+        currentDialogId && messagesRef.current.scrollTo(0, 9999);
     }, [items]);
 
-    
+    if (!currentDialogId) {
+        return <Empty description="Выберите диалог" />;
+    }
 
     return (
         <BaseMessages

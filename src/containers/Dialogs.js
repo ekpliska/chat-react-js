@@ -7,7 +7,7 @@ import { Dialogs as BaseDialogs } from '../components';
 
 import { dialogsActions } from '../redux/actions';
 
-const Dialogs = ({ ref, fetchDialogs, currentDialogId, setCurrentDialogId, items, userId }) => {
+const Dialogs = ({ ref, fetchDialogs, currentDialogId, items, userId }) => {
     const [inputValue, setValue] = useState('');
     const [filtred, setFilteredItems] = useState(Array.from(items));
 
@@ -22,10 +22,10 @@ const Dialogs = ({ ref, fetchDialogs, currentDialogId, setCurrentDialogId, items
         if (items.length) {
             onChangeInput();
         }
-        socket.on('SERVER:DIALOG_CREATED', (data) => {
+        socket.on('SERVER:DIALOG_CREATED', () => {
             fetchDialogs();
         });
-        socket.on('SERVER:MESSAGES_CREATED', (data) => {
+        socket.on('SERVER:MESSAGES_CREATED', () => {
             fetchDialogs();
         });
 
@@ -49,7 +49,6 @@ const Dialogs = ({ ref, fetchDialogs, currentDialogId, setCurrentDialogId, items
             inputValue={ inputValue }
             onSearch={ onChangeInput }
             currentDialogId={ currentDialogId }
-            onSelectDialog={ setCurrentDialogId }
         />
     )
 }

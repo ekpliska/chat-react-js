@@ -17,14 +17,13 @@ const getMessageTime = (created_at) => {
     }
 }
 
-const DialogItem = ({ _id, unreaded, incoming, currentDialogId, onSelect, lastMessage }) => {
+const DialogItem = ({ _id, unreaded, incoming, currentDialogId, lastMessage }) => {
     return (
         <Link to={`/dialog/${_id}`}>
             <div className={classNames('dialogs__item', {
                     'dialogs__item--online': lastMessage.user.isOnline,
                     'dialogs__item--selected': currentDialogId === _id,
                     })} 
-                onClick={ onSelect.bind(this, _id) }
             >
                 <div className="dialogs__item-photo">
                     <UserPhoto user={lastMessage.user} />
