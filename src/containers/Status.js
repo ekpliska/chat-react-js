@@ -5,13 +5,14 @@ import { Status as StatusBase } from '../components';
 
 const Status = ({ dialogs, currentDialogId, items, user }) => {
     
-    if (!dialogs.items.length || !currentDialogId) {
+    if (!dialogs.length || !currentDialogId) {
         return null;
     }
 
     const currentDialog = items.filter(dialog => dialog._id === currentDialogId)[0];
 
-    let partner;
+    let partner = {};
+    
     if (currentDialog.author._id === user._id) {
         partner = currentDialog.partner;
     } else {

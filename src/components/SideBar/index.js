@@ -19,10 +19,8 @@ const SideBar = ({
 
     return (
         <div className="chat__sidebar-header">
-            <div>
-                <Icon type="team" />
-                <span>Список диалогов</span>
-            </div>
+            <Icon type="team" />
+            <span>Список диалогов</span>
             <Button type="link" icon="form" onClick={onShowModal} />
             <Modal
                 title="Новый диалог"

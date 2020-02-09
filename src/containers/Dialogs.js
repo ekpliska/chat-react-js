@@ -25,9 +25,13 @@ const Dialogs = ({ ref, fetchDialogs, currentDialogId, setCurrentDialogId, items
         socket.on('SERVER:DIALOG_CREATED', (data) => {
             fetchDialogs();
         });
+        socket.on('SERVER:MESSAGES_CREATED', (data) => {
+            fetchDialogs();
+        });
 
         return () => {
             socket.removeListener("SERVER:DIALOG_CREATED", items);
+            socket.removeListener("SERVER:MESSAGES_CREATED", items);
         }
     }, [items]);
 

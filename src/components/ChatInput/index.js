@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Button, Input } from 'antd';
 
@@ -30,6 +30,22 @@ const ChatInput = (props) => {
     const setEmojiToInput = ({ colons }) => {
         setValue(`${value} ${colons}`);
     }
+
+    /** Миссклик по кнопке открытия смайлов */
+    const handleOutSideClick = (htmlElement, event) => {
+        if (htmlElement && !htmlElement.contains(event.target)) {
+            setShowEmojiPicker(false);
+        }
+    }
+
+    /** Миссклик по кнопке открытия смайлов */
+    useEffect(() => {
+        const htmlElement = document.querySelector('.chat-input__smile-btn');
+        document.addEventListener('click', handleOutSideClick.bind(this, htmlElement));
+        return () => {
+            document.removeEventListener('click', handleOutSideClick.bind(this, htmlElement));
+        }
+    }, []);
 
     return (
         <div className="chat-input">
