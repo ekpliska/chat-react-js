@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
-import { Popover, Button, Icon } from 'antd';
+import { Popover, Button } from 'antd';
+import { Emoji } from 'emoji-mart';
+import reatStringReplace from 'react-string-replace';
 
 import { DateTime, CheckMessIcon, UserPhoto } from '../';
 
@@ -116,7 +117,13 @@ const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachmen
                     {
                         (audio || text || isTyping) && (
                             <div className="message__bubble">
-                                {text && <p className="message__text">{text}</p>}
+                                {text && (
+                                    <p className="message__text">
+                                        { reatStringReplace(text, /:(.+?):/g, (match, i) => (
+                                            <Emoji key={i} emoji={match} set="apple" size={16} />
+                                        )) }
+                                    </p>
+                                )}
                                 {
                                     isTyping && (
                                         <div className="message__typing">

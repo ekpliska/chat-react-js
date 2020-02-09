@@ -8,6 +8,8 @@ import { Picker } from 'emoji-mart';
 
 import './ChatInput.scss';
 
+const { TextArea } = Input;
+
 const ChatInput = (props) => {
     const [value, setValue] = useState('');
     const [emojiPickerVisible, setShowEmojiPicker] = useState(false);
@@ -19,11 +21,14 @@ const ChatInput = (props) => {
     }
 
     const handleSendMessage = (e) => {
-        console.log(currentDialogId, value);
         if (e.keyCode === 13) {
             onSendMessage(currentDialogId, value);
             setValue('');
         }
+    }
+
+    const setEmojiToInput = ({ colons }) => {
+        setValue(`${value} ${colons}`);
     }
 
     return (
@@ -31,18 +36,19 @@ const ChatInput = (props) => {
             <div className="chat-input__smile-btn">
                 {emojiPickerVisible && (
                     <div className="chat-input__emoji-picker">
-                        <Picker set="emojione" />
+                        <Picker onSelect={ (emojiTag) => setEmojiToInput(emojiTag)} set="emojione" />
                     </div>
                 )}
                 <Button onClick={toggleEmojiPicker} type="link" icon="smile" />
             </div>
 
-            <Input 
+            <TextArea 
                 size="large" 
                 placeholder="Введите ваше сообщение..." 
                 value={ value }
                 onChange={ e => setValue(e.target.value) } 
                 onKeyUp={ handleSendMessage}
+                autoSize={{ minRows: 1, maxRows: 5 }}
             />
 
             <div className="chat-input__actions">

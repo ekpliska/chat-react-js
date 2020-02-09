@@ -151,6 +151,9 @@
 
     #{$self}__info {
       text-align: right;
+      .message__text {
+        line-height: 0;
+      }
     }
 
     #{$self}__bubble {
