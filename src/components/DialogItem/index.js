@@ -41,7 +41,7 @@ const DialogItem = ({ _id, unreaded, incoming, currentDialogId, lastMessage }) =
                             {lastMessage.text}
                         </p>
                         {
-                            !incoming && <CheckMessIcon incoming={false} isReaded={false} />
+                            !incoming && <CheckMessIcon incoming={incoming} isReaded={lastMessage.readed} />
                         }
                         {
                             unreaded > 0 && (

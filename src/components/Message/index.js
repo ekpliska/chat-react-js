@@ -89,7 +89,7 @@ const AudioMessage = ({ audio }) => {
     )
 }
 
-const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachments, isTyping, onRemoveMessage }) => {
+const Message = ({ photo, user, text, date, audio, incoming, readed, attachments, isTyping, onRemoveMessage }) => {
     return (
         <div className={classNames('message', {
             'message--incoming': incoming,
@@ -98,7 +98,7 @@ const Message = ({ photo, user, text, date, audio, incoming, isReaded, attachmen
             'message--is-audio': audio,
         })}>
             <div className="message__content">
-                <CheckMessIcon incoming={!incoming} isReaded={isReaded} />
+                <CheckMessIcon incoming={!incoming} isReaded={readed} />
                 <Popover
                     content={
                         <div>
