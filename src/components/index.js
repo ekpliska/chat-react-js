@@ -11,3 +11,4 @@ export { default as Status } from './Status';
 export { default as ChatInput } from './ChatInput';
 export { default as FormField } from './FormField';
 export { default as SideBar } from './SideBar';
+export { default as UploadFiles } from './UploadFiles';

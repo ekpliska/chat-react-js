@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 
 import { Button, Input } from 'antd';
 
 import { UploadField } from "@navjobs/upload";
 
 import { Picker } from 'emoji-mart';
+
+import { UploadFiles } from '../';
 
 import './ChatInput.scss';
 
@@ -48,43 +50,48 @@ const ChatInput = (props) => {
     }, []);
 
     return (
-        <div className="chat-input">
-            <div className="chat-input__smile-btn">
-                {emojiPickerVisible && (
-                    <div className="chat-input__emoji-picker">
-                        <Picker onSelect={ (emojiTag) => setEmojiToInput(emojiTag)} set="emojione" />
-                    </div>
-                )}
-                <Button onClick={toggleEmojiPicker} type="link" icon="smile" />
-            </div>
+        <Fragment>
+            <div className="chat-input">
+                <div className="chat-input__smile-btn">
+                    {emojiPickerVisible && (
+                        <div className="chat-input__emoji-picker">
+                            <Picker onSelect={(emojiTag) => setEmojiToInput(emojiTag)} set="emojione" />
+                        </div>
+                    )}
+                    <Button onClick={toggleEmojiPicker} type="link" icon="smile" />
+                </div>
 
-            <TextArea 
-                size="large" 
-                placeholder="Введите ваше сообщение..." 
-                value={ value }
-                onChange={ e => setValue(e.target.value) } 
-                onKeyUp={ handleSendMessage}
-                autoSize={{ minRows: 1, maxRows: 5 }}
-            />
+                <TextArea
+                    size="large"
+                    placeholder="Введите ваше сообщение..."
+                    value={value}
+                    onChange={e => setValue(e.target.value)}
+                    onKeyUp={handleSendMessage}
+                    autoSize={{ minRows: 1, maxRows: 5 }}
+                />
 
-            <div className="chat-input__actions">
-                <UploadField
-                    onFiles={files => console.log(files) }
-                    containerProps={{
-                        className: 'chat-input__actions-upload-btn'
-                    }}
-                    uploadProps={{
-                        accept: '.jpg,.jpeg,.png',
-                    }}
-                >
-                <Button type="link" icon="camera" />
-                </UploadField>
-                { value
-                    ? <Button type="link" icon="audio" />
-                    : <Button type="link" icon="enter" />
-                }
+                <div className="chat-input__actions">
+                    <UploadField
+                        onFiles={files => console.log(files)}
+                        containerProps={{
+                            className: 'chat-input__actions-upload-btn'
+                        }}
+                        uploadProps={{
+                            accept: '.jpg,.jpeg,.png',
+                        }}
+                    >
+                        <Button type="link" icon="camera" />
+                    </UploadField>
+                    {value
+                        ? <Button type="link" icon="audio" />
+                        : <Button type="link" icon="enter" />
+                    }
+                </div>
             </div>
-        </div>
+            <div>
+                <UploadFiles />
+            </div>
+        </Fragment>
     )
 }
 
