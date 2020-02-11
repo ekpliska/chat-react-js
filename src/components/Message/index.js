@@ -94,7 +94,7 @@ const Message = ({ photo, user, text, date, audio, incoming, readed, attachments
         <div className={classNames('message', {
             'message--incoming': incoming,
             'message--is-typing': isTyping,
-            'message--image': attachments && attachments.length === 1,
+            'message--image': attachments && attachments.length === 1 && !text,
             'message--is-audio': audio,
         })}>
             <div className="message__content">

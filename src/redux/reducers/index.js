@@ -16,5 +16,6 @@ import files from './files';
 export default combineReducers({
     dialogs,
     messages,
-    user
+    user,
+    files
 });

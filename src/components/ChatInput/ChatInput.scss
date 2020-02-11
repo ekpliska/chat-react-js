@@ -2,6 +2,10 @@
     padding: 20px;
     display: flex;
 
+    & > div:first-of-type {
+        display: flex;
+    }
+
      &__smile-btn {
         margin-right: 7px;
         i.anticon {
@@ -38,5 +42,9 @@
         &:focus {
             box-shadow: none;
         }
+    }
+
+    &__attachments {
+        padding-left: 58px;
     }
 }

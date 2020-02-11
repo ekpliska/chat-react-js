@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { Fragment } from 'react';
 
 import { Button, Input } from 'antd';
 
@@ -12,44 +12,20 @@ import './ChatInput.scss';
 
 const { TextArea } = Input;
 
-const ChatInput = (props) => {
-    const [value, setValue] = useState('');
-    const [emojiPickerVisible, setShowEmojiPicker] = useState(false);
-    const { onSendMessage, currentDialogId } = props;
-
-
-    const toggleEmojiPicker = () => {
-        setShowEmojiPicker(!emojiPickerVisible);
-    }
-
-    const handleSendMessage = (e) => {
-        if (e.keyCode === 13) {
-            onSendMessage(currentDialogId, value);
-            setValue('');
-        }
-    }
-
-    const setEmojiToInput = ({ colons }) => {
-        setValue(`${value} ${colons}`);
-    }
-
-    /** Миссклик по кнопке открытия смайлов */
-    const handleOutSideClick = (htmlElement, event) => {
-        if (htmlElement && !htmlElement.contains(event.target)) {
-            setShowEmojiPicker(false);
-        }
-    }
-
-    /** Миссклик по кнопке открытия смайлов */
-    useEffect(() => {
-        const htmlElement = document.querySelector('.chat-input__smile-btn');
-        document.addEventListener('click', handleOutSideClick.bind(this, htmlElement));
-        return () => {
-            document.removeEventListener('click', handleOutSideClick.bind(this, htmlElement));
-        }
-    }, []);
-
+const ChatInput = ({ 
+    value, 
+    setValue, 
+    emojiPickerVisible, 
+    toggleEmojiPicker, 
+    setEmojiToInput, 
+    handleSendMessage,
+    sendMessage,
+    attachments,
+    onSelectFiles }) => {
+    
+    console.log('value', value);
     return (
+        
         <Fragment>
             <div className="chat-input">
                 <div className="chat-input__smile-btn">
@@ -72,7 +48,7 @@ const ChatInput = (props) => {
 
                 <div className="chat-input__actions">
                     <UploadField
-                        onFiles={files => console.log(files)}
+                        onFiles={onSelectFiles}
                         containerProps={{
                             className: 'chat-input__actions-upload-btn'
                         }}
@@ -83,13 +59,13 @@ const ChatInput = (props) => {
                         <Button type="link" icon="camera" />
                     </UploadField>
                     {value
-                        ? <Button type="link" icon="audio" />
-                        : <Button type="link" icon="enter" />
+                        ? <Button type="link" icon="enter" onClick={sendMessage} />
+                        : <Button type="link" icon="audio" />
                     }
                 </div>
             </div>
-            <div>
-                <UploadFiles />
+            <div className="chat-input__attachments">
+                <UploadFiles attachments={attachments} />
             </div>
         </Fragment>
     )

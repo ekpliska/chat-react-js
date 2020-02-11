@@ -41,6 +41,7 @@
     border-radius: 12px 12px 12px 0px;
     padding: 15px;
     margin-bottom: 8px;
+    order: 2;
   }
 
   &__text {
@@ -51,6 +52,7 @@
   &__attachments {
     display: flex;
     padding: 4px 0;
+    order: 1;
     &-item {
       margin-right: 5px;
       cursor: pointer;
@@ -150,6 +152,8 @@
     }
 
     #{$self}__info {
+      display: flex;
+      align-items: center;
       text-align: right;
       .message__text {
         line-height: 0;
@@ -159,11 +163,13 @@
     #{$self}__bubble {
       background-color: #fff;
       border: 1px solid $clouds;
-      box-shadow: 0, 4px, 4px #bdc3c7;
+      box-shadow: 0 4px 4px #bdc3c7;
       border-radius: 12px 12px 0px 12px;
+      order: 2;
 
       #{$self}__text {
-        color: #34495e;        
+        color: #34495e;
+        order: 2;
       }
     }
   }
