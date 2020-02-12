@@ -15,8 +15,8 @@ const actions = {
             });
         }
     },
-    fetchSendMessage: (dialogId, messageText) => dispatch => {
-        messagesAPI.send(dialogId, messageText);
+    fetchSendMessage: (dialogId, messageText, attachments) => dispatch => {
+        messagesAPI.send(dialogId, messageText, attachments);
     },
     setIsLoading: bool => ({
         type: 'MESSAGES:SET_IS_LOADING',

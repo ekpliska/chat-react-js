@@ -24,8 +24,9 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
     }
 
     const sendMessage = () => {
-        fetchSendMessage(currentDialogId, value);
-        setValue(''); 
+        fetchSendMessage(currentDialogId, value, attachments.map(file => file.uid));
+        setValue('');
+        setAttachments([]);
     }
 
     const setEmojiToInput = ({ colons }) => {
@@ -48,23 +49,24 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
         }
     }, []);
 
-    const onSelectFiles = (files) => {
+    const onSelectFiles = async files => {
         let uploaded = [];
         for (let i = 0; i < files.length; i++)  {
             const uid = Math.round(Math.random() * 1000);
+            const file = files[i];
             uploaded = [
                 ...uploaded,
                 {
                     uid,
-                    name: files[i].name,
+                    name: file.name,
                     status: 'uploading'
                 }
             ];
 
             setAttachments(uploaded);
-
-            uploadFilesAPI
-                .upload(files[i])
+            // eslint-disable-next-line no-loop-func
+            await uploadFilesAPI
+                .upload(file)
                 .then(({ data }) => {
                     uploaded = uploaded.map(item => {
                         if (item.uid === uid) {

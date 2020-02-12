@@ -3,8 +3,9 @@ import { axios } from '../../core';
 export default {
     getMessagesDialog: (dialogId) => axios.get(`/messages?dialog=${dialogId}`),
     removeMessage: (messageId) => axios.delete(`/messages/${messageId}`),
-    send: (dialogId, messageText) => axios.post('/messages', {
+    send: (dialogId, messageText, attachments) => axios.post('/messages', {
         dialog_id: dialogId,
-        text: messageText
+        text: messageText,
+        attachments: attachments
     })
 }
