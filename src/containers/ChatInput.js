@@ -12,6 +12,16 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
     const [value, setValue] = useState('');
     const [emojiPickerVisible, setShowEmojiPicker] = useState(false);
     const [attachments, setAttachments] = useState([]);
+    const [isRecording, setIsRecording] = useState('');
+    const [mediaRecorder, setMediaRecorder] = useState(null);
+    const [isLoading, setLoading] = useState(false);
+
+
+    window.navigator.getUserMedia =
+        window.navigator.getUserMedia ||
+        window.navigator.mozGetUserMedia ||
+        window.navigator.msGetUserMedia ||
+        window.navigator.webkitGetUserMedia;
 
     const toggleEmojiPicker = () => {
         setShowEmojiPicker(!emojiPickerVisible);
@@ -51,38 +61,74 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
 
     const onSelectFiles = async files => {
         let uploaded = [];
-        for (let i = 0; i < files.length; i++)  {
-            const uid = Math.round(Math.random() * 1000);
+        for (let i = 0; i < files.length; i++) {
             const file = files[i];
+            const uid = Math.round(Math.random() * 1000);
             uploaded = [
                 ...uploaded,
                 {
                     uid,
                     name: file.name,
-                    status: 'uploading'
-                }
+                    status: 'uploading',
+                },
             ];
-
             setAttachments(uploaded);
             // eslint-disable-next-line no-loop-func
-            await uploadFilesAPI
-                .upload(file)
-                .then(({ data }) => {
-                    uploaded = uploaded.map(item => {
-                        if (item.uid === uid) {
-                            return {
-                                status: 'done',
-                                uid: data.file._id,
-                                name: data.file.filename,
-                                url: data.file.url,
-                            };
-                        }
-                        return item;
-                    });
+            await uploadFilesAPI.upload(file).then(({ data }) => {
+                uploaded = uploaded.map(item => {
+                    if (item.uid === uid) {
+                        return {
+                            status: 'done',
+                            uid: data.file._id,
+                            name: data.file.filename,
+                            url: data.file.url,
+                        };
+                    }
+                    return item;
                 });
+            });
         }
         setAttachments(uploaded);
-    }
+    };
+
+    const onRecord = () => {
+        if (navigator.getUserMedia) {
+            navigator.getUserMedia({ audio: true }, onRecording, onError);
+        }
+    };
+
+    const onRecording = stream => {
+        const recorder = new MediaRecorder(stream);
+        setMediaRecorder(recorder);
+
+        recorder.start();
+
+        recorder.onstart = () => {
+            setIsRecording(true);
+        };
+
+        recorder.onstop = () => {
+            setIsRecording(false);
+        };
+
+        recorder.ondataavailable = e => {
+            const file = new File([e.data], 'audio.webm');
+            setLoading(true);
+            // filesApi.upload(file).then(({ data }) => {
+            //     sendAudio(data.file._id).then(() => {
+            //         setLoading(false);
+            //     });
+            // });
+        };
+    };
+
+    const onHideRecording = () => {
+        setIsRecording(false);
+    };
+
+    const onError = err => {
+        console.log('Во время записи произошла следующая ошибка: ' + err);
+    };
 
     if (!currentDialogId) {
         return null;
@@ -100,6 +146,10 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
             currentDialogId={currentDialogId}
             attachments={attachments}
             onSelectFiles={onSelectFiles}
+            isRecording={isRecording}
+            onHideRecording={onHideRecording}
+            isLoading={isLoading}
+            onRecord={onRecord}
         />
     )
 }

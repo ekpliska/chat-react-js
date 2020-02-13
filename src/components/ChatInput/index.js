@@ -12,20 +12,24 @@ import './ChatInput.scss';
 
 const { TextArea } = Input;
 
-const ChatInput = ({ 
-    value, 
-    setValue, 
-    emojiPickerVisible, 
-    toggleEmojiPicker, 
-    setEmojiToInput, 
+const ChatInput = ({
+    value,
+    setValue,
+    emojiPickerVisible,
+    toggleEmojiPicker,
+    setEmojiToInput,
     handleSendMessage,
     sendMessage,
     attachments,
-    onSelectFiles }) => {
-    
+    onSelectFiles,
+    isRecording,
+    onHideRecording,
+    isLoading,
+    onRecord }) => {
+
     console.log('value', value);
     return (
-        
+
         <Fragment>
             <div className="chat-input">
                 <div className="chat-input__smile-btn">
@@ -37,14 +41,25 @@ const ChatInput = ({
                     <Button onClick={toggleEmojiPicker} type="link" icon="smile" />
                 </div>
 
-                <TextArea
-                    size="large"
-                    placeholder="Введите ваше сообщение..."
-                    value={value}
-                    onChange={e => setValue(e.target.value)}
-                    onKeyUp={handleSendMessage}
-                    autoSize={{ minRows: 1, maxRows: 5 }}
-                />
+                {isRecording
+                    ? (
+                        <div className="chat-input__record-status">
+                            <i className="chat-input__record-status-bubble"></i>
+                            Идет запись...
+                            <Button type="link" shape="circle" icon="close" className="stop-recording" onClick={onHideRecording} />
+                        </div>
+                    ) : (
+                        <TextArea
+                            size="large"
+                            placeholder="Введите ваше сообщение..."
+                            value={value}
+                            onChange={e => setValue(e.target.value)}
+                            onKeyUp={handleSendMessage}
+                            autoSize={{ minRows: 1, maxRows: 5 }}
+                        />
+                    )
+                }
+
 
                 <div className="chat-input__actions">
                     <UploadField
@@ -58,9 +73,13 @@ const ChatInput = ({
                     >
                         <Button type="link" icon="camera" />
                     </UploadField>
-                    {value
+                    {isRecording || value
                         ? <Button type="link" icon="enter" onClick={sendMessage} />
-                        : <Button type="link" icon="audio" />
+                        : (
+                            <div className="chat-input__record-btn">
+                                <Button type="link" icon="audio" onClick={onRecord} />
+                            </div>
+                        )
                     }
                 </div>
             </div>
