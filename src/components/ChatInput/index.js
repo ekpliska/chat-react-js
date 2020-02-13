@@ -73,7 +73,7 @@ const ChatInput = ({
                     >
                         <Button type="link" icon="camera" />
                     </UploadField>
-                    {isRecording || value
+                    {isRecording || value || attachments.length
                         ? <Button type="link" icon="enter" onClick={sendMessage} />
                         : (
                             <div className="chat-input__record-btn">

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Popover, Button } from 'antd';
+import { Popover, Button, Icon } from 'antd';
 import { Emoji } from 'emoji-mart';
 import reatStringReplace from 'react-string-replace';
 
@@ -89,7 +89,7 @@ const AudioMessage = ({ audio }) => {
     )
 }
 
-const Message = ({ photo, user, text, date, audio, incoming, readed, attachments, isTyping, onRemoveMessage }) => {
+const Message = ({ photo, user, text, date, audio, incoming, readed, attachments, isTyping, onRemoveMessage, setPreviewImage }) => {
     return (
         <div className={classNames('message', {
             'message--incoming': incoming,
@@ -143,7 +143,10 @@ const Message = ({ photo, user, text, date, audio, incoming, readed, attachments
                             <div className="message__attachments">
                                 {
                                     attachments.map((file, index) => (
-                                        <div className="message__attachments-item" key={index}>
+                                        <div className="message__attachments-item" key={index} onClick={() => setPreviewImage(file.url)}>
+                                            <div className="message__attachments-item-overlay">
+                                                <Icon type="eye" style={{ color: '#fff' }} />
+                                            </div>
                                             <img src={file.url} alt={`${file.filename}`} />
                                         </div>
                                     ))

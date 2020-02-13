@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
 import { Empty } from "antd";
 
@@ -11,10 +11,16 @@ import { socket } from '../core';
 const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading, user, removeMessageId }) => {
 
     const messagesRef = useRef(null);
+    const [previewImage, setPreviewImage] = useState(null);
+
+    const onClosePreviewModal = () => {
+        setPreviewImage(null);
+    }
 
     const onNewMessage = (data) => {
         addMessage(data);
     }
+
     useEffect(() => {
         if (currentDialogId) {
             fetchMessages(currentDialogId);
@@ -36,20 +42,23 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading
 
     return (
         <BaseMessages
-            user={ user }
-            blockRef={ messagesRef }
-            items={ items }
-            isLoading={ isLoading }
-            onRemoveMessage={ removeMessageId }
+            user={user}
+            blockRef={messagesRef}
+            items={items}
+            isLoading={isLoading}
+            onRemoveMessage={removeMessageId}
+            previewImage={previewImage}
+            setPreviewImage={setPreviewImage}
+            onClosePreviewModal={onClosePreviewModal}
         />
     )
 }
 
 export default connect(
-    ({ dialogs, messages, user }) => ({ 
-        currentDialogId: dialogs.currentDialogId, 
+    ({ dialogs, messages, user }) => ({
+        currentDialogId: dialogs.currentDialogId,
         items: messages.items,
         isLoading: messages.isLoading,
         user: user.data,
-    }), 
+    }),
     messagesActions)(Messages);

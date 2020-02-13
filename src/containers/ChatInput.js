@@ -97,6 +97,14 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
         }
     };
 
+    const sendAudio = audioId => {
+        return fetchSendMessage({
+            text: null,
+            dialogId: currentDialogId,
+            attachments: [audioId],
+        });
+    };
+
     const onRecording = stream => {
         const recorder = new MediaRecorder(stream);
         setMediaRecorder(recorder);
@@ -114,11 +122,11 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
         recorder.ondataavailable = e => {
             const file = new File([e.data], 'audio.webm');
             setLoading(true);
-            // filesApi.upload(file).then(({ data }) => {
-            //     sendAudio(data.file._id).then(() => {
-            //         setLoading(false);
-            //     });
-            // });
+            uploadFilesAPI.upload(file).then(({ data }) => {
+                sendAudio(data.file._id).then(() => {
+                    setLoading(false);
+                });
+            });
         };
     };
 
