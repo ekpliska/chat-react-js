@@ -3,20 +3,20 @@ import { connect } from 'react-redux';
 
 import { Status as StatusBase } from '../components';
 
-const Status = ({ dialogs, currentDialogId, items, user }) => {
+const Status = ({ dialogs, currentDialogId, user }) => {
     
     if (!dialogs.length || !currentDialogId) {
         return null;
     }
 
-    const currentDialog = items.filter(dialog => dialog._id === currentDialogId)[0];
+    const currentDialogObj = dialogs.filter(dialog => dialog._id === currentDialogId)[0];
 
     let partner = {};
     
-    if (currentDialog.author._id === user._id) {
-        partner = currentDialog.partner;
+    if (currentDialogObj.author._id === user._id) {
+        partner = currentDialogObj.partner;
     } else {
-        partner = currentDialog.author;
+        partner = currentDialogObj.author;
     }
 
     return (
@@ -26,9 +26,8 @@ const Status = ({ dialogs, currentDialogId, items, user }) => {
 
 export default connect(
     ({ dialogs, user }) => ({
-        dialogs: dialogs,
+        dialogs: dialogs.items,
         currentDialogId: dialogs.currentDialogId,
-        items: dialogs.items,
         user: user.data
     })
 )(Status);

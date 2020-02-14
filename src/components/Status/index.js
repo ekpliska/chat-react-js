@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import './Status.scss';
 
 const Status = ({ isOnline, fullname }) => {
+    console.log('Status', isOnline, fullname);
+    
     return (
         <div className="chat__dialog-header-center">
             <b className="chat__dialog-header-username">

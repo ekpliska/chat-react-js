@@ -17,11 +17,11 @@ const getMessageTime = (createdAt) => {
     }
 }
 
-const DialogItem = ({ _id, unreaded, incoming, currentDialogId, lastMessage, partner }) => {
+const DialogItem = ({ _id, incoming, currentDialogId, lastMessage, partner, userId }) => {
     return (
         <Link to={`/dialog/${_id}`}>
             <div className={classNames('dialogs__item', {
-                    'dialogs__item--online': lastMessage.user.isOnline,
+                    'dialogs__item--online': partner.isOnline,
                     'dialogs__item--selected': currentDialogId === _id,
                     })} 
             >
@@ -37,15 +37,15 @@ const DialogItem = ({ _id, unreaded, incoming, currentDialogId, lastMessage, par
                     </div>
                     <div className="dialogs__item-info-bottom">
                         <p>
-                            {lastMessage.text}
+                            {lastMessage.user._id === userId ? `Вы: ${lastMessage.text}` : lastMessage.text}
                         </p>
                         {
                             !incoming && <CheckMessIcon incoming={incoming} isReaded={lastMessage.readed} />
                         }
                         {
-                            unreaded > 0 && (
+                            lastMessage.undread > 0 && (
                                 <div className="dialogs__item-info-bottom-count">
-                                    {unreaded}
+                                    {lastMessage.unreaded > 9 ? '+9' : lastMessage.undread}
                                 </div>
                             )
                         }

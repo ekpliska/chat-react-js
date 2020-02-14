@@ -8,29 +8,28 @@ import { DialogItem } from '../';
 import './Dialogs.scss';
 
 const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId }) => {
+    console.log('currentDialogId 7', currentDialogId);
+
     return (
         <div className="dialogs">
             <div className="dialogs__search">
                 <Input.Search
                     placeholder="Поиск среди контактов"
-                    onChange={ e => onSearch(e.target.value) }
-                    value={ inputValue }
+                    onChange={e => onSearch(e.target.value)}
+                    value={inputValue}
                 />
             </div>
-            { items.length  
+            {items.length
                 ? (
                     orderBy(items, ['created_at'], ['desc']).map(item => (
                         <DialogItem
-                            key={ item._id }
-                            _id={ item._id }
-                            user={ item.author._id }
-                            message={ item }
-                            unreaded={ item.unreaded }
-                            incoming={ item.author._id === userId ? false : true } 
-                            currentDialogId={ currentDialogId }
-                            { ...item }
+                            key={item._id}
+                            incoming={item.author._id === userId}
+                            currentDialogId={currentDialogId}
+                            userId={userId}
+                            {...item}
                         />
-                        ))
+                    ))
                 )
                 : (
                     <Empty

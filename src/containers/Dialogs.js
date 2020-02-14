@@ -7,7 +7,9 @@ import { Dialogs as BaseDialogs } from '../components';
 
 import { dialogsActions } from '../redux/actions';
 
-const Dialogs = ({ ref, fetchDialogs, currentDialogId, items, userId }) => {
+const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
+    console.log('currentDialogId 1', currentDialogId);
+    
     const [inputValue, setValue] = useState('');
     const [filtred, setFilteredItems] = useState(Array.from(items));
 
@@ -22,28 +24,23 @@ const Dialogs = ({ ref, fetchDialogs, currentDialogId, items, userId }) => {
         if (items.length) {
             onChangeInput();
         }
-        socket.on('SERVER:DIALOG_CREATED', () => {
-            fetchDialogs();
-        });
-        socket.on('SERVER:MESSAGES_CREATED', () => {
-            fetchDialogs();
-        });
-
-        return () => {
-            socket.removeListener("SERVER:DIALOG_CREATED", items);
-            socket.removeListener("SERVER:MESSAGES_CREATED", items);
-        }
     }, [items]);
 
     useEffect(() => {
-        fetchDialogs();
-    }, []);
 
-    
+        fetchDialogs();
+
+        socket.on('SERVER:DIALOG_CREATED', fetchDialogs);
+        socket.on('SERVER:MESSAGES_CREATED', fetchDialogs);
+
+        return () => {
+            socket.removeListener("SERVER:DIALOG_CREATED", fetchDialogs);
+            socket.removeListener("SERVER:MESSAGES_CREATED", fetchDialogs);
+        }
+    }, []);
 
     return (
         <BaseDialogs 
-            ref={ ref }
             items={ filtred } 
             userId={ userId }
             inputValue={ inputValue }

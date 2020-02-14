@@ -14,7 +14,7 @@ const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage, previewIm
         <div className="chat__dialog-messages" style={{ height: 'calc(100% - 220px)' }}>
             <div ref={blockRef} className={classNames("messages", { "messages--loading": isLoading })}>
                 {
-                    isLoading
+                    isLoading && !user
                         ? (
                             <Spin tip="Загрузка..." />
                         )

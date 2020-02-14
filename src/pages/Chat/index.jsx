@@ -9,12 +9,11 @@ import { dialogsActions } from '../../redux/actions';
 import './Chat.scss';
 
 const Chat = (props) => {
-    console.log('props', props);
-    
+
     const { user, setCurrentDialogId } = props;
 
     useEffect(() => {
-        const { location: { pathname } } = props;
+        const { pathname } = props.location;
         const dialogId = pathname.split('/').pop();
         setCurrentDialogId(dialogId);
     }, [props.location.pathname]);
@@ -25,16 +24,18 @@ const Chat = (props) => {
                 <div className="chat__sidebar">
                     <SideBar />
                     <div className="chat__sidebar-dialogs">
-                        <Dialogs userId={ user && user._id } />
+                        <Dialogs userId={user && user._id} />
                     </div>
                 </div>
-                <div className="chat__dialog">
-                    <div className="chat__dialog-header"><div />
-                        <Status isOnline />
+                {user && (
+                    <div className="chat__dialog">
+                        <div className="chat__dialog-header"><div />
+                            <Status />
+                        </div>
+                        <Messages />
+                        <ChatInput />
                     </div>
-                    <Messages />
-                    <ChatInput />
-                </div>
+                )}
             </div>
         </section>
     )
