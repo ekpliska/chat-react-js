@@ -3,21 +3,21 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
-import format from 'date-fns/format';
-import isToday from 'date-fns/isToday';
+import { format, parseISO } from 'date-fns';
+import { isToday } from 'date-fns';
 
 import './DialogItem.scss';
 import { CheckMessIcon, UserPhoto } from '../';
 
-const getMessageTime = (created_at) => {
-    if (isToday(created_at)) {
-        return format(created_at, 'HH:mm');
+const getMessageTime = (createdAt) => {
+    if (isToday(createdAt)) {
+        return format(createdAt, 'HH:mm');
     } else {
-        return format(created_at, 'dd.M.yyyy');
+        return format(createdAt, 'dd.M.yyyy');
     }
 }
 
-const DialogItem = ({ _id, unreaded, incoming, currentDialogId, lastMessage }) => {
+const DialogItem = ({ _id, unreaded, incoming, currentDialogId, lastMessage, partner }) => {
     return (
         <Link to={`/dialog/${_id}`}>
             <div className={classNames('dialogs__item', {
@@ -26,14 +26,13 @@ const DialogItem = ({ _id, unreaded, incoming, currentDialogId, lastMessage }) =
                     })} 
             >
                 <div className="dialogs__item-photo">
-                    <UserPhoto user={lastMessage.user} />
+                    <UserPhoto user={partner} />
                 </div>
                 <div className="dialogs__item-info">
                     <div className="dialogs__item-info-top">
-                        <b>{lastMessage.user.fullname}</b>
+                        <b>{partner.fullname}</b>
                         <span>
-                            %todo
-                            {/* {getMessageTime(message.created_at)} */}
+                            {getMessageTime(parseISO(lastMessage.createdAt))}
                         </span>
                     </div>
                     <div className="dialogs__item-info-bottom">
