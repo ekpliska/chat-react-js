@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { connect } from 'react-redux';
+import find from 'lodash/find';
+
 import { Empty } from "antd";
 
 import { Messages as BaseMessages } from '../components';
@@ -8,11 +10,14 @@ import { messagesActions } from '../redux/actions';
 
 import { socket } from '../core';
 
-const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading, user, removeMessageId, attachments }) => {
+const Messages = ({ currentDialog, fetchMessages, addMessage, items, isLoading, user, removeMessageId, attachments }) => {
 
     const messagesRef = useRef(null);
     const [previewImage, setPreviewImage] = useState(null);
     const [chatInputHeight, setChatInputHeight] = useState(135);
+    const [isTyping, setIsTyping] = useState(false);
+
+    let typingTimeoutId = null;
 
     const onClosePreviewModal = () => {
         setPreviewImage(null);
@@ -22,20 +27,32 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading
         addMessage(data);
     }
 
+    const toggleIsTyping = () => {
+        setIsTyping(true);
+        clearInterval(typingTimeoutId);
+        typingTimeoutId = setTimeout(() => {
+            setIsTyping(false);
+        }, 3000);
+    };
+
     useEffect(() => {
-        if (currentDialogId) {
-            fetchMessages(currentDialogId);
+        socket.on('DIALOGS:TYPING', toggleIsTyping);
+    }, []);
+
+    useEffect(() => {
+        if (currentDialog) {
+            fetchMessages(currentDialog._id);
         }
         socket.on('SERVER:MESSAGES_CREATED', onNewMessage);
 
         return () => {
             socket.removeListener("SERVER:MESSAGES_CREATED", onNewMessage);
         }
-    }, [currentDialogId]);
+    }, [currentDialog]);
 
     useEffect(() => {
-        currentDialogId && messagesRef.current.scrollTo(0, 9999);
-    }, [items]);
+        currentDialog && messagesRef.current.scrollTo(0, 9999);
+    }, [items, isTyping]);
 
     useEffect(() => {
         if (attachments.length) {
@@ -45,7 +62,7 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading
         }
     }, [attachments])
 
-    if (!currentDialogId) {
+    if (!currentDialog) {
         return <Empty description="Выберите диалог" />;
     }
 
@@ -60,13 +77,15 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading
             setPreviewImage={setPreviewImage}
             onClosePreviewModal={onClosePreviewModal}
             chatInputHeight={chatInputHeight}
+            isTyping={isTyping}
+            partner={user._id !== currentDialog.partner._id ? currentDialog.author : currentDialog.partner}
         />
     )
 }
 
 export default connect(
     ({ dialogs, messages, user, attachments }) => ({
-        currentDialogId: dialogs.currentDialogId,
+        currentDialog: find(dialogs.items, { _id: dialogs.currentDialogId }),
         items: messages.items,
         isLoading: messages.isLoading,
         user: user.data,

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { socket } from '../core';
 
 import { ChatInput as ChatInputBase } from '../components';
 
@@ -34,6 +35,10 @@ const ChatInput = (props) => {
     }
 
     const handleSendMessage = (e) => {
+        socket.emit('DIALOGS:TYPING', {
+            dialogId: currentDialogId,
+            user: user
+        });
         if (e.keyCode === 13) {
             sendMessage();
         }

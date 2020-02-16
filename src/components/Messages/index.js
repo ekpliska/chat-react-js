@@ -18,7 +18,9 @@ const Messages = ({
     previewImage, 
     setPreviewImage, 
     onClosePreviewModal, 
-    chatInputHeight }) => {
+    chatInputHeight,
+    isTyping,
+    partner }) => {
     return (
         <div className="chat__dialog-messages" style={{ height: `calc(100% - ${chatInputHeight}px)` }}>
             <div ref={blockRef} className={classNames("messages", { "messages--loading": isLoading })}>
@@ -45,6 +47,9 @@ const Messages = ({
                             ) : (
                                 <Empty description="Выберите диалог" />
                             )
+                }
+                {
+                    isTyping && <Message isTyping={true} user={partner} />
                 }
                 <Modal
                     visible={!!previewImage}
