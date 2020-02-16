@@ -9,9 +9,18 @@ import { Message } from '..';
 import './Messages.scss';
 
 // incoming - входящее сообщение
-const Messages = ({ blockRef, isLoading, items, user, onRemoveMessage, previewImage, setPreviewImage, onClosePreviewModal }) => {
+const Messages = ({ 
+    blockRef, 
+    isLoading, 
+    items, 
+    user, 
+    onRemoveMessage, 
+    previewImage, 
+    setPreviewImage, 
+    onClosePreviewModal, 
+    chatInputHeight }) => {
     return (
-        <div className="chat__dialog-messages" style={{ height: 'calc(100% - 220px)' }}>
+        <div className="chat__dialog-messages" style={{ height: `calc(100% - ${chatInputHeight}px)` }}>
             <div ref={blockRef} className={classNames("messages", { "messages--loading": isLoading })}>
                 {
                     isLoading && !user

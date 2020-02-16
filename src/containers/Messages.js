@@ -8,10 +8,11 @@ import { messagesActions } from '../redux/actions';
 
 import { socket } from '../core';
 
-const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading, user, removeMessageId }) => {
+const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading, user, removeMessageId, attachments }) => {
 
     const messagesRef = useRef(null);
     const [previewImage, setPreviewImage] = useState(null);
+    const [chatInputHeight, setChatInputHeight] = useState(135);
 
     const onClosePreviewModal = () => {
         setPreviewImage(null);
@@ -36,6 +37,14 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading
         currentDialogId && messagesRef.current.scrollTo(0, 9999);
     }, [items]);
 
+    useEffect(() => {
+        if (attachments.length) {
+            setChatInputHeight(245);
+        } else {
+            setChatInputHeight(135);
+        }
+    }, [attachments])
+
     if (!currentDialogId) {
         return <Empty description="Выберите диалог" />;
     }
@@ -50,15 +59,17 @@ const Messages = ({ currentDialogId, fetchMessages, addMessage, items, isLoading
             previewImage={previewImage}
             setPreviewImage={setPreviewImage}
             onClosePreviewModal={onClosePreviewModal}
+            chatInputHeight={chatInputHeight}
         />
     )
 }
 
 export default connect(
-    ({ dialogs, messages, user }) => ({
+    ({ dialogs, messages, user, attachments }) => ({
         currentDialogId: dialogs.currentDialogId,
         items: messages.items,
         isLoading: messages.isLoading,
         user: user.data,
+        attachments: attachments.items
     }),
     messagesActions)(Messages);
