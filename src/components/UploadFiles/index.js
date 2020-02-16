@@ -11,7 +11,7 @@ function getBase64(file) {
     });
 }
 
-const UploadFiles = ({ attachments }) => {
+const UploadFiles = ({ attachments, removeAttachment }) => {
     const [state, setState] = useState({
         previewVisible: false, 
         previewImage: "", 
@@ -44,12 +44,10 @@ const UploadFiles = ({ attachments }) => {
     };
 
     const handleChange = ({ fileList }) => {
-
         setState({
             ...state, 
             fileList
         });
-
     };
 
     return (
@@ -60,6 +58,7 @@ const UploadFiles = ({ attachments }) => {
                 fileList={state.fileList}
                 onPreview={handlePreview}
                 onChange={handleChange}
+                onRemove={file => removeAttachment(file)}
             >
             </Upload>
             <Modal visible={state.previewVisible} footer={null} onCancel={handleCancel}>
@@ -69,31 +68,5 @@ const UploadFiles = ({ attachments }) => {
     );
 
 }
-
-// class UploadFiles extends React.Component {
-//     state = {
-//         previewVisible: false,
-//         previewImage: '',
-//         fileList: [
-//             {
-//                 uid: '-1',
-//                 name: 'image.png',
-//                 status: 'done',
-//                 url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-//             }
-//         ],
-//     };
-
-    
-
-//     handleChange = ({ fileList }) => this.setState({ fileList });
-
-//     render() {
-//         const { previewVisible, previewImage, fileList } = this.state;
-//         const { attachments } = this.props;
-
-        
-//     }
-// }
 
 export default UploadFiles;

@@ -25,7 +25,8 @@ const ChatInput = ({
     isRecording,
     onHideRecording,
     isLoading,
-    onRecord }) => {
+    onRecord,
+    removeAttachment }) => {
 
     return (
 
@@ -86,7 +87,7 @@ const ChatInput = ({
             </div>
             { attachments.length > 0 && (
                 <div className="chat-input__attachments">
-                    <UploadFiles attachments={attachments} />
+                    <UploadFiles attachments={attachments} removeAttachment={removeAttachment} />
                 </div>
             )}
         </Fragment>

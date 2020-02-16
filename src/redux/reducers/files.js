@@ -13,7 +13,7 @@ export default (state = initialState, { type, payload }) => {
         case 'FILES:REMOVE_FILE': 
             return {
                 ...state,
-                items: state.items.filter(file => file._id !== payload)
+                items: state.items.filter(file => file.uid !== payload.uid)
             }
         default:
             return state;

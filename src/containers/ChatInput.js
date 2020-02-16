@@ -171,6 +171,7 @@ const ChatInput = (props) => {
             onRecord={onRecord}
             onHideRecording={onHideRecording}
             isLoading={isLoading}
+            removeAttachment={removeAttachment}
         />
     )
 }
