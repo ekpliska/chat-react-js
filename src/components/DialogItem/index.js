@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import { format, parseISO } from 'date-fns';
 import { isToday } from 'date-fns';
 
-import './DialogItem.scss';
 import { CheckMessIcon, UserPhoto } from '../';
+import './DialogItem.scss';
 
 const getMessageTime = (createdAt) => {
     if (isToday(createdAt)) {
@@ -15,6 +15,16 @@ const getMessageTime = (createdAt) => {
     } else {
         return format(createdAt, 'dd.M.yyyy');
     }
+}
+
+const renderLastMessage = (message, userId) => {
+    let textLastMessage = '';
+    if (!message.text && message.attachments.length > 0) {
+        textLastMessage = 'Прикрепленный файл';
+    } else {
+        textLastMessage = message.text;
+    }
+    return message.user._id === userId ? `Вы: ${textLastMessage}` : textLastMessage;
 }
 
 const DialogItem = ({ _id, incoming, currentDialogId, lastMessage, partner, userId }) => {
@@ -37,7 +47,7 @@ const DialogItem = ({ _id, incoming, currentDialogId, lastMessage, partner, user
                     </div>
                     <div className="dialogs__item-info-bottom">
                         <p>
-                            {lastMessage.user._id === userId ? `Вы: ${lastMessage.text}` : lastMessage.text}
+                            {renderLastMessage(lastMessage, userId)}
                         </p>
                         {
                             !incoming && <CheckMessIcon incoming={incoming} isReaded={lastMessage.readed} />
