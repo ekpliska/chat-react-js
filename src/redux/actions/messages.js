@@ -15,8 +15,10 @@ const actions = {
             });
         }
     },
-    fetchSendMessage: (dialogId, messageText, attachments) => dispatch => {
-        messagesAPI.send(dialogId, messageText, attachments);
+    fetchSendMessage: ({ text, dialogId, attachments }) => dispatch => {
+        console.log('fetchSendMessage', text, dialogId, attachments);
+        
+        return messagesAPI.send(text, dialogId, attachments);
     },
     setIsLoading: bool => ({
         type: 'MESSAGES:SET_IS_LOADING',
@@ -35,12 +37,14 @@ const actions = {
     },
     fetchMessages: (dialogId) => dispatch => {
         dispatch(actions.setIsLoading(true));
-        messagesAPI.getMessagesDialog(dialogId).then(({ data }) => {
-            dispatch(actions.setMessages(data));
-        })
-        .catch(() => {
-            dispatch(actions.setIsLoading(false));
-        })
+        messagesAPI
+            .getMessagesDialog(dialogId)
+            .then(({ data }) => {
+                dispatch(actions.setMessages(data));
+            })
+            .catch(() => {
+                dispatch(actions.setIsLoading(false));
+            })
     }
 };
 

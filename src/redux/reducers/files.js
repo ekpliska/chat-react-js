@@ -5,10 +5,10 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
-        case 'FILES:ADD_FILE':
+        case 'FILES:SET_FILES':
             return {
                 ...state,
-                items: [...state.items, payload]
+                items: payload
             };
         case 'FILES:REMOVE_FILE': 
             return {

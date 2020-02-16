@@ -27,7 +27,6 @@ const ChatInput = ({
     isLoading,
     onRecord }) => {
 
-    console.log('value', value);
     return (
 
         <Fragment>
@@ -73,7 +72,9 @@ const ChatInput = ({
                     >
                         <Button type="link" icon="camera" />
                     </UploadField>
-                    {isRecording || value || attachments.length
+                    {isLoading ? (
+                        <Button type="link" shape="circle" icon="loading" />
+                    ) : isRecording || value || attachments.length
                         ? <Button type="link" icon="enter" onClick={sendMessage} />
                         : (
                             <div className="chat-input__record-btn">
@@ -83,9 +84,11 @@ const ChatInput = ({
                     }
                 </div>
             </div>
-            <div className="chat-input__attachments">
-                <UploadFiles attachments={attachments} />
-            </div>
+            { attachments.length > 0 && (
+                <div className="chat-input__attachments">
+                    <UploadFiles attachments={attachments} />
+                </div>
+            )}
         </Fragment>
     )
 }

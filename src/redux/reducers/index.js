@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import dialogs from './dialogs';
 import messages from './messages';
 import user from './user';
-import files from './files';
+import attachments from './files';
 
 // const reducers = ['messages', 'dialogs', 'user'];
 
@@ -17,5 +17,5 @@ export default combineReducers({
     dialogs,
     messages,
     user,
-    files
+    attachments
 });

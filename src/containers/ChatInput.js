@@ -3,19 +3,25 @@ import { connect } from 'react-redux';
 
 import { ChatInput as ChatInputBase } from '../components';
 
-import { messagesActions } from '../redux/actions';
+import { messagesActions, filesActions } from '../redux/actions';
 
 import { uploadFilesAPI } from '../utils/api';
 
-const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
+const ChatInput = (props) => {
+    const {
+        dialogs: { currentDialogId },
+        attachments,
+        fetchSendMessage,
+        setAttachments,
+        removeAttachment,
+        user,
+    } = props;
 
     const [value, setValue] = useState('');
-    const [emojiPickerVisible, setShowEmojiPicker] = useState(false);
-    const [attachments, setAttachments] = useState([]);
     const [isRecording, setIsRecording] = useState('');
     const [mediaRecorder, setMediaRecorder] = useState(null);
+    const [emojiPickerVisible, setShowEmojiPicker] = useState(false);
     const [isLoading, setLoading] = useState(false);
-
 
     window.navigator.getUserMedia =
         window.navigator.getUserMedia ||
@@ -34,9 +40,17 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
     }
 
     const sendMessage = () => {
-        fetchSendMessage(currentDialogId, value, attachments.map(file => file.uid));
-        setValue('');
-        setAttachments([]);
+        if (isRecording) {
+            mediaRecorder.stop();
+        } else if (value || attachments.length) {
+            fetchSendMessage({
+                text: value,
+                dialogId: currentDialogId,
+                attachments: attachments.map(file => file.uid),
+            });
+            setValue('');
+            setAttachments([]);
+        }
     }
 
     const setEmojiToInput = ({ colons }) => {
@@ -97,14 +111,6 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
         }
     };
 
-    const sendAudio = audioId => {
-        return fetchSendMessage({
-            text: null,
-            dialogId: currentDialogId,
-            attachments: [audioId],
-        });
-    };
-
     const onRecording = stream => {
         const recorder = new MediaRecorder(stream);
         setMediaRecorder(recorder);
@@ -130,6 +136,14 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
         };
     };
 
+    const sendAudio = audioId => {
+        return fetchSendMessage({
+            text: null,
+            dialogId: currentDialogId,
+            attachments: [audioId],
+        });
+    };
+
     const onHideRecording = () => {
         setIsRecording(false);
     };
@@ -150,21 +164,22 @@ const ChatInput = ({ fetchSendMessage, currentDialogId }) => {
             toggleEmojiPicker={toggleEmojiPicker}
             setEmojiToInput={setEmojiToInput}
             handleSendMessage={handleSendMessage}
-            sendMessage={sendMessage}
-            currentDialogId={currentDialogId}
-            attachments={attachments}
+            sendMessage={sendMessage }
             onSelectFiles={onSelectFiles}
+            attachments={attachments}
             isRecording={isRecording}
+            onRecord={onRecord}
             onHideRecording={onHideRecording}
             isLoading={isLoading}
-            onRecord={onRecord}
         />
     )
 }
 
 export default connect(
-    ({ dialogs }) => ({
-        currentDialogId: dialogs.currentDialogId
+    ({ dialogs, attachments, user }) => ({
+        dialogs,
+        attachments: attachments.items,
+        user: user.data,
     }),
-    messagesActions
+    { ...messagesActions, ...filesActions }
 )(ChatInput);
