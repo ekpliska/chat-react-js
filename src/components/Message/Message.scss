@@ -116,13 +116,21 @@
   }
 
   &--is-audio {
-    width: 250px;
+    audio {
+      display: none;
+    }
     #{$self}__bubble {
       position: relative;
       width: 280px;
       overflow: hidden;
     }
     #{$self}__audio {
+      padding: 15px;
+      background-color: #d9d9d9;
+      border-radius: 12px 12px 0px 12px;
+      width: 250px;
+      overflow: hidden;
+      position: relative;
       &-info {
         display: flex;
         align-items: center;

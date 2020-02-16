@@ -7,7 +7,7 @@ import reatStringReplace from 'react-string-replace';
 
 import { DateTime, CheckMessIcon, UserPhoto } from '../';
 
-import { convertCurrentTime } from '../../utils/helpers';
+import { convertCurrentTime, isAudio } from '../../utils/helpers';
 
 import waveSvg from '../../asset/wave.svg';
 import playSvg from '../../asset/play.svg';
@@ -90,12 +90,27 @@ const AudioMessage = ({ audio }) => {
 }
 
 const Message = ({ photo, user, text, date, audio, incoming, readed, attachments, isTyping, onRemoveMessage, setPreviewImage }) => {
+
+    const renderAttachment = (item) => {
+        if (item.ext !== 'webm') {
+            return (
+                <div className="message__attachments-item" key={item._id} onClick={() => setPreviewImage(item.url)}>
+                    <div className="message__attachments-item-overlay">
+                        <Icon type="eye" style={{ color: '#fff' }} />
+                    </div>
+                    <img src={item.url} alt={`${item.filename}`} />
+                </div>
+            )
+        }
+        return <AudioMessage key={item._id} audio={item.url} />
+    }
+
     return (
         <div className={classNames('message', {
             'message--incoming': incoming,
             'message--is-typing': isTyping,
-            'message--image': attachments && attachments.length === 1 && !text,
-            'message--is-audio': audio,
+            'message--image': !isAudio(attachments) && attachments && attachments.length === 1 && !text,
+            'message--is-audio': isAudio(attachments),
         })}>
             <div className="message__content">
                 <CheckMessIcon incoming={!incoming} isReaded={readed} />
@@ -119,9 +134,9 @@ const Message = ({ photo, user, text, date, audio, incoming, readed, attachments
                             <div className="message__bubble">
                                 {text && (
                                     <p className="message__text">
-                                        { reatStringReplace(text, /:(.+?):/g, (match, i) => (
+                                        {reatStringReplace(text, /:(.+?):/g, (match, i) => (
                                             <Emoji key={i} emoji={match} set="apple" size={16} />
-                                        )) }
+                                        ))}
                                     </p>
                                 )}
                                 {
@@ -143,12 +158,7 @@ const Message = ({ photo, user, text, date, audio, incoming, readed, attachments
                             <div className="message__attachments">
                                 {
                                     attachments.map((file, index) => (
-                                        <div className="message__attachments-item" key={index} onClick={() => setPreviewImage(file.url)}>
-                                            <div className="message__attachments-item-overlay">
-                                                <Icon type="eye" style={{ color: '#fff' }} />
-                                            </div>
-                                            <img src={file.url} alt={`${file.filename}`} />
-                                        </div>
+                                        renderAttachment(file)
                                     ))
                                 }
                             </div>
