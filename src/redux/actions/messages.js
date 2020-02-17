@@ -16,8 +16,6 @@ const actions = {
         }
     },
     fetchSendMessage: ({ text, dialogId, attachments }) => dispatch => {
-        console.log('fetchSendMessage', text, dialogId, attachments);
-        
         return messagesAPI.send(text, dialogId, attachments);
     },
     setIsLoading: bool => ({
