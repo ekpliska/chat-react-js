@@ -8,8 +8,6 @@ import { Dialogs as BaseDialogs } from '../components';
 import { dialogsActions } from '../redux/actions';
 
 const Dialogs = ({ fetchDialogs, currentDialogId, items, userId }) => {
-    console.log('currentDialogId 1', currentDialogId);
-    
     const [inputValue, setValue] = useState('');
     const [filtred, setFilteredItems] = useState(Array.from(items));
 

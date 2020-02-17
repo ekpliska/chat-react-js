@@ -8,8 +8,6 @@ import { DialogItem } from '../';
 import './Dialogs.scss';
 
 const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId }) => {
-    console.log('currentDialogId 7', currentDialogId);
-
     return (
         <div className="dialogs">
             <div className="dialogs__search">

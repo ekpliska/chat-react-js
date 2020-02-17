@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Status as StatusBase } from '../components';
 
 const Status = ({ dialogs, currentDialogId, user }) => {
-    
+
     if (!dialogs.length || !currentDialogId) {
         return null;
     }
@@ -20,7 +20,7 @@ const Status = ({ dialogs, currentDialogId, user }) => {
     }
 
     return (
-        <StatusBase {...partner} />
+        <StatusBase { ...partner } />
     )
 }
 
